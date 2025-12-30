@@ -1,0 +1,11 @@
+{
+  "DATABASE": {
+    "VALUE": {
+      "HOST": "localhost",
+      "PORT": 3306,
+      "USERNAME": "root",
+      "PASSWORD": "password",
+      "NAME": "test_db"
+    }
+  }
+}
