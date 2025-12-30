@@ -7,9 +7,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node bundle.js",
+    "build": "vite build",
     "build:vite": "vite build",
-    "bundle": "node bundle.js",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
