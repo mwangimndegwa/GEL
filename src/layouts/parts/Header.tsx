@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 
 export interface HeaderConfig {
@@ -164,79 +164,100 @@ export default function HeaderPattern({ config = {}, className }: HeaderPatternP
     </nav>
   );
 
-  const renderMobileMenu = () => {
-    if (mobileBehavior !== 'hamburger') return null;
+  // ensure you have these imports at top:
+// import { Menu, X, ChevronRight } from 'lucide-react';
+// and existing: useState, useEffect, useRef, Link, useLocation, cn
 
-    return (
-      <>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 hover:bg-accent rounded-md transition-colors"
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-          aria-controls="mobile-menu"
+const renderMobileMenu = () => {
+  if (mobileBehavior !== 'hamburger') return null;
+
+  return (
+    <>
+      {/* Toggle Button */}
+      <button
+        onClick={() => {
+          setIsMobileMenuOpen(prev => {
+            const next = !prev;
+            // debug log to confirm toggle
+            // eslint-disable-next-line no-console
+            console.log('mobile menu toggled ->', next);
+            return next;
+          });
+        }}
+        className="p-2 hover:bg-slate-50 rounded-full transition-colors lg:hidden lg:hidden flex items-center justify-center text-slate-900"
+        aria-label="Toggle menu"
+        aria-expanded={isMobileMenuOpen}
+      >
+        {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+      </button>
+
+      {/* Mobile Dropdown Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          ref={menuRef}
+          // fixed so it sits on top; very high z-index to avoid being behind anything
+          className="fixed left-0 right-0 z-[9999] bg-white lg:hidden border-t border-slate-100 shadow-2xl"
+          style={{
+            top: menuTopPx, // computed from headerRef
+            maxHeight: `calc(100vh - ${menuTopPx}px)`,
+            overflowY: 'auto'
+          }}
+          role="dialog"
+          aria-modal="true"
         >
-          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          <div className="container mx-auto px-4 py-4">
+            <nav className="flex flex-col gap-1">
+              {navItems.map((item, i) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  item.external || item.href.startsWith('#') ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target={item.external ? '_blank' : undefined}
+                      rel={item.external ? 'noopener noreferrer' : undefined}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        'block w-full py-4 px-3 rounded-md transition-colors',
+                        isActive ? 'bg-slate-50 text-[#800000]' : 'hover:bg-slate-50 text-slate-900'
+                      )}
+                    >
+                      <span className="font-semibold uppercase tracking-wider text-sm">{item.label}</span>
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={cn(
+                        'flex items-center justify-between w-full py-4 px-3 rounded-md transition-colors',
+                        isActive ? 'bg-slate-50 text-[#800000]' : 'hover:bg-slate-50 text-slate-900'
+                      )}
+                    >
+                      <span className="font-semibold uppercase tracking-wider text-sm">{item.label}</span>
+                      <ChevronRight size={18} className="text-slate-300" />
+                    </Link>
+                  )
+                );
+              })}
 
-        {isMobileMenuOpen && (
-          <div
-            id="mobile-menu"
-            ref={menuRef}
-            className="fixed left-0 right-0 z-40 bg-background shadow-lg"
-            style={{
-              top: `${menuTopPx}px`,
-              maxHeight: `calc(100vh - ${menuTopPx}px)`,
-              overflowY: 'auto'
-            }}
-          >
-            <nav className="container mx-auto px-4 py-2 flex flex-col gap-1 max-w-full">
-              {navItems.map((item) =>
-                item.external || item.href.startsWith('#') ? (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    target={item.external ? '_blank' : undefined}
-                    rel={item.external ? 'noopener noreferrer' : undefined}
-                    className={cn(
-                      'text-sm md:text-base font-semibold uppercase py-3 transition-all hover:underline hover:text-black/80',
-                      'tracking-wider'
-                    )}
-                    style={{ color: '#000000', letterSpacing: '0.04em' }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className={cn(
-                      'text-sm md:text-base font-semibold uppercase py-3 transition-all hover:underline hover:text-black/80',
-                      'tracking-wider',
-                      location.pathname === item.href ? 'underline' : ''
-                    )}
-                    style={{ color: '#000000', letterSpacing: '0.04em' }}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-
+              {/* actions (donate etc) */}
               {actions && (
-                <div className="pt-3 border-t border-border mt-2">
-                  <div className="flex items-center justify-center py-2">
-                    <div className="w-full max-w-xs">{actions}</div>
+                <div className="mt-4 pt-4 border-t border-slate-100">
+                  <div className="w-full max-w-md mx-auto">
+                    {actions}
                   </div>
                 </div>
               )}
             </nav>
           </div>
-        )}
-      </>
-    );
-  };
+        </div>
+      )}
+    </>
+  );
+};
+
+
 
   const getHeaderContent = () => {
     switch (variant) {

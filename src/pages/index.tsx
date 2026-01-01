@@ -41,21 +41,20 @@ function useTypewriter(text: string, speed: number = 40) {
 
   useEffect(() => {
     let i = 0;
-    let cancelled = false;
+    let timerId: NodeJS.Timeout;
 
     function tick() {
-      if (cancelled) return;
       if (i <= text.length) {
         setDisplayText(text.slice(0, i));
         i += 1;
-        setTimeout(tick, speed);
+        timerId = setTimeout(tick, speed);
       }
     }
 
     tick();
 
     return () => {
-      cancelled = true;
+      clearTimeout(timerId);
     };
   }, [text, speed]);
 
@@ -107,8 +106,11 @@ function useScrollProgress() {
 }
 
 
-function MissionTypewriter({ className }: {className?: string;}) {
-  const text = useTypewriter(missionText, 40);
+function MissionTypewriter({ className }: { className?: string; }) {
+  const totalDuration = 2500; // 1.8 seconds target
+  const charSpeed = Math.max(1, Math.floor(totalDuration / missionText.length));
+  
+  const text = useTypewriter(missionText, charSpeed);
   return <p className={className}>{text}</p>;
 }
 
