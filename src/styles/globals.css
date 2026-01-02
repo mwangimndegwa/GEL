@@ -81,6 +81,71 @@
     animation-name: fadeIn;
   }
 
+  .timeline-card::before {
+    content: '';
+    position: absolute;
+    inset: 0; /* top:0; left:0; right:0; bottom:0; */
+    /* strong green at the very bottom, fading quickly to transparent ~50% up */
+    background: linear-gradient(
+      to top,
+      rgba(0, 128, 0, 0.30) 0%,    /* solid-ish brand green at the bottom */
+      rgba(0, 128, 0, 0.18) 15%,   /* quick fade */
+      rgba(0, 128, 0, 0.08) 28%,   /* softer fade approaching mid */
+      rgba(255, 255, 255, 0.00) 40%, /* transparent by ~half the tile */
+      rgba(255, 255, 255, 0.00) 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: normal; /* keeps overlay simple and readable */
+  }
+
+  /* Ensure the card itself is on a higher layer */
+  .timeline-card {
+    position: relative; /* needed for the ::after ground shadow to position correctly */
+    z-index: 2;
+    /* keep existing transition/transform rules you already have */
+  }
+
+  /* Soft ground shadow underneath the card to create the 'placed on a surface' effect */
+  .timeline-card::after {
+    content: "";
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: -14px;               /* slightly below the card */
+    height: 40px;                /* shadow spread */
+    border-radius: 50%;          /* elliptical shape */
+    background: radial-gradient(
+      ellipse at center,
+      rgba(15, 23, 42, 0.16) 0%,
+      rgba(15, 23, 42, 0.10) 40%,
+      rgba(15, 23, 42, 0.04) 70%,
+      rgba(15, 23, 42, 0.00) 100%
+    );
+    filter: blur(16px);          /* smooth the edge */
+    transform: translateY(6px);  /* pull shadow slightly down for realism */
+    pointer-events: none;
+    z-index: 1;                  /* sits behind the card content */
+    transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 260ms ease;
+    opacity: 1;
+  }
+
+  /* Hover: lift the card and intensify the ground shadow */
+  @media (hover: hover) and (pointer: fine) {
+    .timeline-card:hover {
+      transform: translateY(-10px) rotateX(0.6deg); /* subtle lift */
+      box-shadow:
+        0 6px 12px rgba(15,23,42,0.06),
+        0 24px 48px rgba(15,23,42,0.14);
+    }
+
+    .timeline-card:hover::after {
+      transform: translateY(14px) scale(1.06); /* shadow grows & moves down */
+      opacity: 0.95;
+    }
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -95,3 +160,5 @@
 html {
   scroll-behavior: smooth;
 }
+
+

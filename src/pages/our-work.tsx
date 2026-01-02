@@ -29,7 +29,32 @@ export default function OurWorkPage() {
     curriculum:
       'https://images.unsplash.com/photo-1528216311170-3b4f4b8da0a9?w=1200&q=60&auto=format&fit=crop',
     mentorship:
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200&q=60&auto=format&fit=crop'
+      'https://i.ibb.co/KxRP7W6h/B-pick.jpg'
+  };
+
+  const handleFindHub = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
+          const data = await response.json();
+          if (data.countryCode === 'KE') {
+            window.location.href = 'https://www.smartacademy.go.ke/gok-digital-hubs/';
+          } else {
+            alert('Digital hubs are currently available in Kenya. For other locations, please check back later.');
+          }
+        } catch (error) {
+          console.error('Error fetching location data:', error);
+          alert('Unable to determine your location. Please try again.');
+        }
+      }, (error) => {
+        console.error('Geolocation error:', error);
+        alert('Unable to get your location. Please enable location services and try again.');
+      });
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
   };
 
   return (
@@ -126,7 +151,12 @@ export default function OurWorkPage() {
                 </div>
               </div>
 
-              <Button size="lg" style={{ background: BRAND_BROWN, borderColor: BRAND_BROWN, color: '#fff' }}>
+              <Button
+                size="lg"
+                onClick={() => (window.location.href = 'https://forms.gle/cwS5BgLH2rGEozTS8')}
+                aria-label="Apply to BELM Program"
+                className="bg-[#008000] border border-[#1a9a5a] text-white px-6 py-3 rounded-md inline-flex items-center gap-2 transition-colors duration-200 ease-out hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a9a5a]/30"
+              >
                 Apply to BELM Program
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -136,7 +166,7 @@ export default function OurWorkPage() {
             <div className="rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white p-8">
               <div className="mb-6">
                 <h3 className="text-xl font-heading font-semibold">The Reality</h3>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-black">
                   Data points that shape our mission and the urgency of scale.
                 </p>
               </div>
@@ -146,21 +176,21 @@ export default function OurWorkPage() {
                   <div className="text-4xl md:text-5xl font-heading font-extrabold" style={{ color: BRAND_BROWN }}>
                     60+
                   </div>
-                  <div className="text-sm text-muted-foreground mt-2">Avg students per teacher</div>
+                  <div className="text-sm text-black mt-2">Avg students per teacher</div>
                 </div>
 
                 <div className="text-center">
                   <div className="text-4xl md:text-5xl font-heading font-extrabold" style={{ color: BRAND_BLUE }}>
-                    1:5
+                    1:8
                   </div>
-                  <div className="text-sm text-muted-foreground mt-2">Textbooks to students (ratio)</div>
+                  <div className="text-sm text-black mt-2">Textbooks to students (ratio)</div>
                 </div>
 
                 <div className="text-center">
                   <div className="text-4xl md:text-5xl font-heading font-extrabold text-accent">
                     &lt;15%
                   </div>
-                  <div className="text-sm text-muted-foreground mt-2">With reliable digital access</div>
+                  <div className="text-sm text-black mt-2">With reliable digital access</div>
                 </div>
               </div>
 
@@ -169,15 +199,15 @@ export default function OurWorkPage() {
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-md bg-[url('/assets/classroom-muted.jpg')] bg-center bg-cover opacity-90 filter grayscale"></div>
                   <div>
-                    <div className="font-heading text-lg font-semibold">A crowded classroom</div>
-                    <div className="text-sm text-muted-foreground">(muted photo, high-quality — no sad imagery)</div>
+                    <div className="font-heading text-lg font-semibold">STATISTICS</div>
+                    <div className="text-sm text-black">(muted photo, high-quality — no sad imagery)</div>
                   </div>
                 </div>
                 <div className="mt-4">
                   {/* small infographic bars */}
                   <div className="space-y-3">
                     <div>
-                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <div className="flex justify-between text-xs text-black mb-1">
                         <span>Students per teacher</span>
                         <span>60+</span>
                       </div>
@@ -187,9 +217,9 @@ export default function OurWorkPage() {
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <div className="flex justify-between text-xs text-black mb-1">
                         <span>Textbook availability</span>
-                        <span>1:5</span>
+                        <span>1:8</span>
                       </div>
                       <div className="h-2 rounded bg-gray-200">
                         <div className="h-2 rounded" style={{ width: '50%', background: BRAND_BLUE }} />
@@ -197,7 +227,7 @@ export default function OurWorkPage() {
                     </div>
 
                     <div>
-                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
+                      <div className="flex justify-between text-xs text-black mb-1">
                         <span>Digital access</span>
                         <span>&lt;15%</span>
                       </div>
@@ -220,7 +250,7 @@ export default function OurWorkPage() {
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1601758123927-3c2a94e3b042?w=1600&q=60&auto=format&fit=crop"
+                  src="https://i.ibb.co/m5pymz7k/Web-Photo-Editor.jpg"
                   alt="Learning hub classroom"
                   className="w-full h-full object-cover"
                 />
@@ -235,38 +265,38 @@ export default function OurWorkPage() {
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">
                 The Solution: Curated Learning Hubs
               </h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-black mb-6 leading-relaxed">
                 We partner with under-resourced schools and community libraries to establish Curated
-                Learning Hubs — incubators for future leaders, combining digital access, ethical
+                Learning Hubs, and Incubators for future leaders, combining digital access, ethical
                 curriculum, and mentorship.
               </p>
 
               {/* GEL Equation visual */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border">
-                  <Tablet className="h-6 w-6 text-primary" />
+                <div className="flex items-center gap-3 p-3 bg-[#008000] rounded-lg shadow-sm border text-white">
+                  <Tablet className="h-6 w-6 text-white" />
                   <div>
-                    <div className="text-xs text-muted-foreground">Digital Access</div>
+                    <div className="text-xs">Digital Access</div>
                     <div className="text-sm font-semibold">Offline + Connected</div>
                   </div>
                 </div>
 
-                <div className="text-2xl font-extrabold text-muted-foreground">+</div>
+                <div className="text-2xl font-extrabold text-white">+</div>
 
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border">
-                  <Lightbulb className="h-6 w-6 text-accent" />
+                <div className="flex items-center gap-3 p-3 bg-[#008000] rounded-lg shadow-sm border text-white">
+                  <Lightbulb className="h-6 w-6 text-white" />
                   <div>
-                    <div className="text-xs text-muted-foreground">Ethical Curriculum</div>
+                    <div className="text-xs">Ethical Curriculum</div>
                     <div className="text-sm font-semibold">Critical Thinking</div>
                   </div>
                 </div>
 
-                <div className="text-2xl font-extrabold text-muted-foreground">=</div>
+                <div className="text-2xl font-extrabold text-white">=</div>
 
-                <div className="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm border">
-                  <Award className="h-6 w-6 text-[#1a9a5a]" />
+                <div className="flex items-center gap-3 p-3 bg-[#008000] rounded-lg shadow-sm border text-white">
+                  <Award className="h-6 w-6 text-white" />
                   <div>
-                    <div className="text-xs text-muted-foreground">Result</div>
+                    <div className="text-xs">Result</div>
                     <div className="text-sm font-semibold">Empowered Leaders</div>
                   </div>
                 </div>
@@ -318,11 +348,9 @@ export default function OurWorkPage() {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <Button variant="outline" className="font-body">
-                  Find a Hub Near You
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+              <div className="bg-[#008000] border border-[#1a9a5a] text-white px-6 py-3 rounded-md inline-flex items-center gap-2 transition-colors duration-200 ease-out hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a9a5a]/30 cursor-pointer" onClick={handleFindHub}>
+                Find a Tech Hub Near You
+                <ArrowRight className="ml-2 h-5 w-5" />
               </div>
             </div>
           </div>
@@ -339,10 +367,10 @@ export default function OurWorkPage() {
               </Badge>
 
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">Innovate for Impact Challenge</h2>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                Knowledge without application is stagnation. BELM students identify local problems
+              <p className="mb-6 leading-relaxed">
+                Knowledge without application is stagnation. BELM scholars identify local problems
                 and propose data-driven solutions. Winners receive micro-grants and mentorship to
-                bring ideas to life — turning learners into changemakers.
+                bring ideas to life, turning learners into changemakers.
               </p>
 
               <div className="flex gap-4">
@@ -351,7 +379,11 @@ export default function OurWorkPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
 
-                <Button size="lg" variant="outline">
+                <Button
+                  size="lg"
+                  onClick={() => (window.location.href = '/get-involved')}
+                  className="bg-[#008000] border border-[#1a9a5a] text-white px-6 py-3 rounded-md inline-flex items-center gap-2 transition-colors duration-200 ease-out hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a9a5a]/30"
+                >
                   Support a Project
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -361,7 +393,7 @@ export default function OurWorkPage() {
             <div className="order-1 lg:order-2">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1600&q=60&auto=format&fit=crop"
+                  src="https://i.ibb.co/XfZ6ytp5/IMG-6393.avif"
                   alt="innovation"
                   className="w-full h-full object-cover"
                 />
@@ -388,7 +420,7 @@ export default function OurWorkPage() {
                 title: 'Agriculture',
                 image: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1600&q=60&auto=format&fit=crop',
                 overlay: 'Data-Driven Agriculture',
-                micro: 'Empowering smallholder farmers with price prediction and climate-resilient strategies.',
+                micro: 'Empowering smallholder farmers with price prediction and climate-resilient strategies making Agriculture more Predictive, Productive, and Manageable for them.',
                 status: 'In Development'
               },
               {
@@ -396,7 +428,7 @@ export default function OurWorkPage() {
                 image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=60&auto=format&fit=crop',
                 overlay: 'The Tech Frontier',
                 micro: 'Advanced boot camps in Data Science, AI and Machine Learning.',
-                status: 'Coming Late 2025'
+                status: 'Coming Early 2027'
               },
               {
                 title: 'Leadership',
@@ -407,9 +439,9 @@ export default function OurWorkPage() {
               },
               {
                 title: 'Community',
-                image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1600&q=60&auto=format&fit=crop',
-                overlay: 'The GEL Alumni Network',
-                micro: 'A lifelong support system connecting scholars to global opportunities.',
+                image: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1600&q=60&auto=format&fit=crop',
+                overlay: 'The Global Educated Leaders',
+                micro: 'A lifelong support system connecting Leaders to a global community.',
                 status: 'Loading...'
               }
             ].map((card) => (
@@ -428,7 +460,7 @@ export default function OurWorkPage() {
 
                 <div className="p-6">
                   <div className="text-lg font-semibold mb-2">{card.title}</div>
-                  <div className="text-sm text-muted-foreground mb-4">{card.micro}</div>
+                  <div className="text-sm text-black mb-4">{card.micro}</div>
                 </div>
 
                 <div className="absolute left-0 right-0 bottom-0 h-0 group-hover:h-full transition-all pointer-events-none"></div>

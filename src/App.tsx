@@ -39,20 +39,21 @@ const headerConfig: RootLayoutConfig['header'] = {
   navPosition: 'right',
   logo: {
     image: 'https://img1.wsimg.com/isteam/ip/4c7d7889-4f72-4435-bf65-b243583e0204/blob.png',
-    text: 'Global Educated Leaders',
+    text: 'GLOBAL EDUCATED LEADERS', // CHANGE: Set to Uppercase for authority
     href: '/'
   },
   navItems: [
-    { href: '/', label: 'Home' },
-    { href: '/our-work', label: 'Our Work' },
-    { href: '/about', label: 'About Us' },
-    { href: '/get-involved', label: 'Get Involved' }
+    { href: '/', label: 'HOME' },               // CHANGE: Uppercase
+    { href: '/our-work', label: 'OUR WORK' },    // CHANGE: Uppercase
+    { href: '/about', label: 'ABOUT US' },       // CHANGE: Uppercase
+    { href: '/get-involved', label: 'GET INVOLVED' } // CHANGE: Uppercase
   ],
   sticky: true,
   actions: (
     <a
       href="/get-involved"
-      className="px-6 py-2 rounded-md font-semibold transition-colors hover:opacity-90"
+      // CHANGE: Increased padding (px-8), made font-black, added tracking-widest, and rounded-full
+      className="px-8 py-2.5 rounded-full text-sm font-black tracking-widest uppercase transition-all hover:scale-105 shadow-md"
       style={{ backgroundColor: '#800000', color: '#FFFFFF' }}
     >
       Donate

@@ -1,55 +1,51 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Heart, Target, Users, TrendingUp, ArrowRight, Linkedin, Mail } from 'lucide-react';
+import { Heart, Target, Users, TrendingUp, ArrowRight, Linkedin, Mail, Shield, Lightbulb, Globe } from 'lucide-react';
 
 export default function AboutPage() {
   const timeline = [
     {
-      year: '2018',
-      title: 'The Beginning',
-      description: 'Founded by a group of passionate educators and community leaders who saw the need for data-driven leadership development in Africa.'
-    },
-    {
-      year: '2019',
-      title: 'First BELM Cohort',
-      description: 'Launched our flagship Building Educated Leadership Minds program with 50 participants across 3 countries.'
-    },
-    {
-      year: '2020',
-      title: 'Digital Expansion',
-      description: 'Adapted to virtual learning and expanded our reach to 10 countries, training 200+ leaders during the pandemic.'
-    },
-    {
-      year: '2021',
-      title: 'Learning Hubs Launch',
-      description: 'Opened our first 5 Curated Learning Hubs in underserved communities, providing access to quality education resources.'
-    },
-    {
       year: '2022',
-      title: 'Innovation Challenge',
-      description: 'Launched Innovate for Impact, our annual challenge bringing together 200+ youth to solve local challenges.'
-    },
-    {
-      year: '2023',
-      title: 'Pan-African Network',
-      description: 'Established partnerships across 15 countries, creating a robust network of leaders and changemakers.'
+      title: 'Roots of Resilience',
+      description: 'Born and raised in Kenya’s informal settlements, our founder returned to the soil to create rural jobs and food security. But in 2023, a brutal drought turned a thriving harvest into total loss, wiping out every cent of investment. This heartbreak revealed a hard truth: passion alone isn’t enough. To survive, African leadership must bridge the gap between tradition and data-driven resilience.'    
     },
     {
       year: '2024',
-      title: 'Scaling Impact',
-      description: 'Reached 5,000+ leaders trained, 50+ communities impacted, and launched 15+ active programs across the continent.'
+      title: 'The Geneva Spark',
+      description: 'While standing in the UN Headquarters, our founder saw more than just diplomats; he witnessed leaders from forgotten corners of the world sharing identical struggles. This experience moved him to realize that while international standards exist, the "soul" of leadership is found in personal connection. It sparked the vision for GEL: To create a global tapestry where a grassroots farmer and a tech innovator can share a table, trade stories, and build a world where no leader walks alone.'
+    },
+    {
+      year: '2025',
+      title: 'The ASU Launchpad',
+      description: 'Validated by the Mastercard Foundation Scholarship, our founder joined Arizona State University—the #1 US school for innovation. This launchpad fueled a dual mission: scaling world-class leadership insights globally while bridging the digital divide for underserved children, ensuring they access the same cutting-edge knowledge as the world’s elite institutions.'
+    },
+    {
+      year: '2025',
+      title: 'GEL is Formally Revealed',
+      description: 'Following a period of strategic reflection, the "Global Educated Leaders" framework was born—integrating Education, Agriculture, Tech, and Leadership into one cohesive mission for community-led global transformation.'
+    },
+    {
+      year: '2025',
+      title: 'Seed Funding',
+      description: 'GEL secured initial capital, transitioning from a concept to an operational organization and launching our first student-led community initiatives.'
+    },
+    {
+      year: 'FUTURE',
+      title: 'Scaling the Global Network',
+      description: 'From our first pilots in Kenya to a continent-wide network, GEL is building a community of purpose-driven changemakers committed to making Africa a self-sustaining global powerhouse.'
     }
   ];
 
   const leadership = [
     {
-      name: 'Dr. Amara Okafor',
+      name: 'Mwangi M. Ndegwa',
       role: 'Founder & Executive Director',
-      image: 'https://media.gettyimages.com/id/2195938350/photo/professional-woman-smiling-confidently-standing-in-corporate-setting-representing-leadership.jpg?b=1&s=2048x2048&w=0&k=20&c=IAcqQnYCPzde6mF9RWNhNz8BDqdxVI5J7lDV7VfrA7I=',
-      bio: 'Former World Bank consultant with 15+ years in international development. PhD in Education Policy from Oxford University.'
+      image: 'https://i.ibb.co/6JH02mVx/IMG-3979.jpg',
+      bio: 'Former Chair of the Executive Board of Kenya with 7+ years of experience in Non-Profits. Currently an MS Student in Data Science, Analytics, and Engineering at Arizona State University.'
     },
     {
       name: 'Kwame Mensah',
@@ -58,16 +54,16 @@ export default function AboutPage() {
       bio: 'Tech entrepreneur and educator. Founded 3 successful EdTech startups across West Africa. MIT Sloan MBA.'
     },
     {
-      name: 'Fatima Hassan',
-      role: 'Director of Operations',
-      image: 'https://media.gettyimages.com/id/1340008640/photo/closeup-shot-of-a-young-businesswoman-at-work.jpg?b=1&s=2048x2048&w=0&k=20&c=gUoPIOLwDX1kkdm5GuS_4zELxv-tPGtR8e7t1YXXb7A=',
-      bio: 'Operations expert with experience scaling nonprofits across 20+ countries. Former McKinsey consultant.'
+      name: 'Amina Zuma',
+      role: 'BELM Program Director',
+      image: 'https://i.ibb.co/67tVp047/a96eed79-d378-48b1-8bf0-c4e13ce70a45.jpg',
+      bio: 'With 4+ years of experience in community mobilization and youth development, she is a distinguished SUSI Alumna and a dedicated healthcare professional in training, currently completing her B.Sc. in Nursing at Pwani University.'
     },
     {
-      name: 'Thabo Ndlovu',
-      role: 'Director of Innovation',
+      name: 'Collins Kili',
+      role: 'Project Manager',
       image: 'https://media.gettyimages.com/id/639465722/photo/close-up-portrait-of-serious-man.jpg?b=1&s=2048x2048&w=0&k=20&c=73c5diJ1bK7IaQJ01dzaaROXkh_C9bwAofK0dUEsCgU=',
-      bio: 'Innovation strategist and design thinking expert. Led innovation labs at Google and Microsoft Africa.'
+      bio: 'Holds an MS in Management with Project Management from BPP University. With a technical mastery of statistical modeling with 10+ years of community engagement, he bridges the gap between complex data and real-world solutions.'
     }
   ];
 
@@ -117,7 +113,7 @@ export default function AboutPage() {
               About Us
             </h1>
             <p className="font-body text-xl md:text-2xl opacity-95 leading-relaxed">
-              We are Global Educated Leaders (GEL), a nonprofit organization dedicated to cultivating data-driven leaders and transforming communities across Africa.
+              We are Global Educated Leaders (GEL), a nonprofit organization managed and run by 100% Volunteers dedicated to cultivating data-driven leaders and transforming communities globally.
             </p>
           </div>
         </div>
@@ -134,7 +130,7 @@ export default function AboutPage() {
                 </div>
                 <h2 className="font-heading text-3xl font-bold mb-4">Our Mission</h2>
                 <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                  To cultivate data-driven leaders and empower communities across Africa through education, innovation, and sustainable development programs that create lasting impact.
+                  To cultivate a global community of leaders who leverage data and technology to drive sustainable development, foster social impact, improve food security, and promote equitable economic opportunities.
                 </p>
               </CardContent>
             </Card>
@@ -145,7 +141,7 @@ export default function AboutPage() {
                 </div>
                 <h2 className="font-heading text-3xl font-bold mb-4">Our Vision</h2>
                 <p className="font-body text-lg text-muted-foreground leading-relaxed">
-                  A transformed Africa where every community has access to quality education, strong leadership, and the tools needed to drive sustainable development and prosperity.
+                  To create a world where empowered, data-driven leaders transform nations through knowledge, innovation, and ethical action.
                 </p>
               </CardContent>
             </Card>
@@ -154,40 +150,102 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Timeline */}
-      <section id="story" className="py-20 md:py-28 bg-muted">
+      {/* Our Story Timeline - upgraded for international / world-class presentation */}
+      <section id="story" className="py-20 md:py-28 bg-muted relative overflow-hidden">
+        {/* subtle background texture / diagonal light */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(3,51,102,0.03) 0%, rgba(181,101,29,0.02) 40%, transparent 100%)'
+          }}
+        />
+
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">Our Story</h2>
-            <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-              From a small group of passionate educators to a pan-African movement transforming communities.
+          <div className="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+              Our Story
+            </h2>
+            <p className="font-body text-lg text-muted-foreground">
+              From a small group of passionate community leaders to a global movement transforming communities.
             </p>
           </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
-              
-              {timeline.map((item, index) => (
-                <div key={index} className={`relative mb-12 md:mb-16 ${
-                  index % 2 === 0 ? 'md:pr-1/2 md:text-right' : 'md:pl-1/2 md:ml-auto'
-                }`}>
-                  {/* Timeline dot */}
-                  <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full -ml-2 md:-ml-2 border-4 border-background" />
-                  
-                  <Card className="ml-16 md:ml-0 md:w-[calc(100%-2rem)]">
-                    <CardContent className="p-6">
-                      <Badge className="mb-3 font-body">{item.year}</Badge>
-                      <h3 className="font-heading text-2xl font-bold mb-2">{item.title}</h3>
-                      <p className="font-body text-muted-foreground">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+
+          {/* Timeline wrapper */}
+          <div className="max-w-6xl mx-auto relative">
+            {/* central vertical line */}
+            <div className="absolute left-1/2 top-6 bottom-6 w-[2px] bg-border transform -translate-x-1/2" />
+
+            <div className="space-y-12 md:space-y-16">
+              {timeline.map((item, index) => {
+                const isLeft = index % 2 === 0;
+                return (
+                  <div key={index} className="relative">
+                    <div className="md:grid md:grid-cols-2 md:items-start">
+                      {/* Left column (content or empty) */}
+                      <div
+                        className={cn(
+                          "md:px-6 md:py-2",
+                          isLeft ? "md:pr-8 md:text-right" : "md:col-start-2 md:pl-8"
+                        )}
+                      >
+                        {/* Card content */}
+                        <div
+                          className={cn(
+                            "timeline-card relative inline-block bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 md:max-w-[520px] transition-transform duration-500 ease-out",
+                            isLeft ? "md:translate-x-0" : "md:translate-x-0"
+                          )}
+                          role="article"
+                          aria-labelledby={`story-${index}-title`}
+                        >
+                          <div className="flex items-center justify-between md:justify-start md:gap-4">
+                            <span
+                              className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold"
+                              style={{ background: '#008000', color: 'white' }}
+                            >
+                              {item.year}
+                            </span>
+
+                            {/* optional small icon placeholder - replace with real icon */}
+                            {item.icon && (
+                              <span className="ml-3 hidden md:inline-flex items-center justify-center rounded-full w-10 h-10 bg-[#F6F3EF]">
+                                <item.icon className="w-5 h-5 text-[#B5651D]" />
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 id={`story-${index}-title`} className="font-heading text-2xl font-bold mt-4 mb-2" style={{ color: '#003366' }}>
+                            {item.title}
+                          </h3>
+                          <p className="font-body leading-relaxed" style={{ color: '#003366' }}>
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Spacer column for the opposite side on large screens */}
+                      <div className="hidden md:block md:w-8" />
+
+                      {/* Timeline marker column (center) */}
+                      <div className="md:col-span-2 pointer-events-none">
+                        {/* absolute marker placed at the correct Y position */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-2 md:translate-y-0">
+                          <div
+                            className="w-6 h-6 rounded-full ring-4 ring-white border-2 border-[#B5651D] bg-[#B5651D] shadow-lg"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Leadership Team */}
       <section id="team" className="py-20 md:py-28 bg-background">
@@ -264,62 +322,80 @@ export default function AboutPage() {
 
       {/* Values Section */}
       <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">Our Values</h2>
             <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do.
+              The principles that drives our day-to-day commitment.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <Heart className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Compassion</h3>
-                <p className="font-body text-muted-foreground">
-                  We lead with empathy and understanding, putting people first in everything we do.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
-                  <Target className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Excellence</h3>
-                <p className="font-body text-muted-foreground">
-                  We strive for the highest standards in our programs, partnerships, and impact.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
-                  <Users className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Collaboration</h3>
-                <p className="font-body text-muted-foreground">
-                  We believe in the power of partnerships and community-driven solutions.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <TrendingUp className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Innovation</h3>
-                <p className="font-body text-muted-foreground">
-                  We embrace creative solutions and data-driven approaches to complex challenges.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Top row - 3 tiles */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                    <Heart className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Service & Love</h3>
+                  <p className="font-body text-muted-foreground">
+                    Rooted in Galatians 5:13, we believe in using our freedom to serve others through love.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                    <Shield className="h-8 w-8 text-accent" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Ethics & Integrity</h3>
+                  <p className="font-body text-muted-foreground">
+                    We maintain high ethical standards in all operations, ensuring that leadership is practiced with empathy and transparency rather than conflict.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                    <Users className="h-8 w-8 text-accent" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Equity & Inclusion</h3>
+                  <p className="font-body text-muted-foreground">
+                    We are committed to bridging the digital divide, ensuring the same access to world-class tools as those in elite institutions.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Bottom row - 2 tiles centered */}
+            <div className="flex flex-col md:flex-row justify-center gap-8">
+              <Card className="text-center border-2 w-full md:w-[calc(33.333%-1.33rem)]">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
+                    <Lightbulb className="h-8 w-8 text-secondary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Innovation</h3>
+                  <p className="font-body text-muted-foreground">
+                    Moving away from tradition only approaches, we prioritize creative solutions and technical approaches to complex challenges.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-2 w-full md:w-[calc(33.333%-1.33rem)]">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                    <Globe className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Global Citizenship</h3>
+                  <p className="font-body text-muted-foreground">
+                    We strive to make African students and leaders competitive on the world stage by fostering a global network of collaboration and knowledge sharing.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
