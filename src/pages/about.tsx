@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Heart, Target, Users, TrendingUp, ArrowRight, Linkedin, Mail } from 'lucide-react';
+import { Heart, Target, Users, TrendingUp, ArrowRight, Linkedin, Mail, Shield, Lightbulb, Globe } from 'lucide-react';
 
 export default function AboutPage() {
   const timeline = [
@@ -57,13 +57,13 @@ export default function AboutPage() {
       name: 'Amina Zuma',
       role: 'BELM Program Director',
       image: 'https://i.ibb.co/67tVp047/a96eed79-d378-48b1-8bf0-c4e13ce70a45.jpg',
-      bio: 'Operations expert with experience scaling nonprofits across 20+ countries. Former McKinsey consultant.'
+      bio: 'With 4+ years of experience in community mobilization and youth development, she is a distinguished SUSI Alumna and a dedicated healthcare professional in training, currently completing her B.Sc. in Nursing at Pwani University.'
     },
     {
-      name: 'Collins Killi',
+      name: 'Collins Kili',
       role: 'Project Manager',
       image: 'https://media.gettyimages.com/id/639465722/photo/close-up-portrait-of-serious-man.jpg?b=1&s=2048x2048&w=0&k=20&c=73c5diJ1bK7IaQJ01dzaaROXkh_C9bwAofK0dUEsCgU=',
-      bio: 'Holds an MS in Management with Project Management from BPP University and a Bachelor’s degree in Mathematics (Statistics). By combining his technical mastery of statistical modeling with ten years of community mentorship, Collins bridges the gap between complex data and real-world human rights solutions.'
+      bio: 'Holds an MS in Management with Project Management from BPP University. With a technical mastery of statistical modeling with 10+ years of community engagement, he bridges the gap between complex data and real-world solutions.'
     }
   ];
 
@@ -168,7 +168,7 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="font-body text-lg text-muted-foreground">
-              From a small group of passionate educators to a pan-African movement transforming communities.
+              From a small group of passionate community leaders to a global movement transforming communities.
             </p>
           </div>
 
@@ -193,53 +193,34 @@ export default function AboutPage() {
                         {/* Card content */}
                         <div
                           className={cn(
-                            "timeline-card inline-block bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 md:max-w-[520px] transition-transform duration-500 ease-out",
+                            "timeline-card relative inline-block bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 md:max-w-[520px] transition-transform duration-500 ease-out",
                             isLeft ? "md:translate-x-0" : "md:translate-x-0"
                           )}
                           role="article"
                           aria-labelledby={`story-${index}-title`}
-                          tabIndex={0}
-                          onClick={(e) => {
-                            const card = e.currentTarget;
-                            const isFlipped = card.dataset.flipped === 'true';
-                            card.dataset.flipped = isFlipped ? 'false' : 'true';
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              const card = e.currentTarget;
-                              const isFlipped = card.dataset.flipped === 'true';
-                              card.dataset.flipped = isFlipped ? 'false' : 'true';
-                            }
-                          }}
                         >
-                          <div className="card-face card-face--front relative">
-                            <div className="flex items-center justify-between md:justify-start md:gap-4">
-                              <span
-                                className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold"
-                                style={{ background: 'rgba(0,51,102,0.08)', color: '#003366' }}
-                              >
-                                {item.year}
+                          <div className="flex items-center justify-between md:justify-start md:gap-4">
+                            <span
+                              className="inline-flex items-center justify-center px-3 py-1 rounded-full text-sm font-semibold"
+                              style={{ background: '#008000', color: 'white' }}
+                            >
+                              {item.year}
+                            </span>
+
+                            {/* optional small icon placeholder - replace with real icon */}
+                            {item.icon && (
+                              <span className="ml-3 hidden md:inline-flex items-center justify-center rounded-full w-10 h-10 bg-[#F6F3EF]">
+                                <item.icon className="w-5 h-5 text-[#B5651D]" />
                               </span>
-
-                              {/* optional small icon placeholder - replace with real icon */}
-                              {item.icon && (
-                                <span className="ml-3 hidden md:inline-flex items-center justify-center rounded-full w-10 h-10 bg-[#F6F3EF]">
-                                  <item.icon className="w-5 h-5 text-[#B5651D]" />
-                                </span>
-                              )}
-                            </div>
-
-                            <h3 id={`story-${index}-title`} className="font-heading text-2xl font-bold mt-4 mb-2" style={{ color: '#003366' }}>
-                              {item.title}
-                            </h3>
-                            <div className="absolute bottom-0 left-0 right-0 h-2 timeline-accent"></div>
+                            )}
                           </div>
-                          <div className="card-face card-face--back bg-muted/50 p-6 rounded-2xl">
-                            <p className="font-body text-foreground leading-relaxed">
-                              {item.description}
-                            </p>
-                          </div>
+
+                          <h3 id={`story-${index}-title`} className="font-heading text-2xl font-bold mt-4 mb-2" style={{ color: '#003366' }}>
+                            {item.title}
+                          </h3>
+                          <p className="font-body leading-relaxed" style={{ color: '#003366' }}>
+                            {item.description}
+                          </p>
                         </div>
                       </div>
 
@@ -341,62 +322,80 @@ export default function AboutPage() {
 
       {/* Values Section */}
       <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">Our Values</h2>
             <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
-              The principles that guide everything we do.
+              The principles that drives our day-to-day commitment.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <Heart className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Compassion</h3>
-                <p className="font-body text-muted-foreground">
-                  We lead with empathy and understanding, putting people first in everything we do.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
-                  <Target className="h-8 w-8 text-secondary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Excellence</h3>
-                <p className="font-body text-muted-foreground">
-                  We strive for the highest standards in our programs, partnerships, and impact.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
-                  <Users className="h-8 w-8 text-accent" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Collaboration</h3>
-                <p className="font-body text-muted-foreground">
-                  We believe in the power of partnerships and community-driven solutions.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="text-center border-2">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <TrendingUp className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-3">Innovation</h3>
-                <p className="font-body text-muted-foreground">
-                  We embrace creative solutions and data-driven approaches to complex challenges.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="max-w-6xl mx-auto space-y-8">
+            {/* Top row - 3 tiles */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                    <Heart className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Service & Love</h3>
+                  <p className="font-body text-muted-foreground">
+                    Rooted in Galatians 5:13, we believe in using our freedom to serve others through love.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                    <Shield className="h-8 w-8 text-accent" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Ethics & Integrity</h3>
+                  <p className="font-body text-muted-foreground">
+                    We maintain high ethical standards in all operations, ensuring that leadership is practiced with empathy and transparency rather than conflict.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="text-center border-2">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                    <Users className="h-8 w-8 text-accent" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Equity & Inclusion</h3>
+                  <p className="font-body text-muted-foreground">
+                    We are committed to bridging the digital divide, ensuring the same access to world-class tools as those in elite institutions.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Bottom row - 2 tiles centered */}
+            <div className="flex flex-col md:flex-row justify-center gap-8">
+              <Card className="text-center border-2 w-full md:w-[calc(33.333%-1.33rem)]">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary/10 mb-6">
+                    <Lightbulb className="h-8 w-8 text-secondary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Innovation</h3>
+                  <p className="font-body text-muted-foreground">
+                    Moving away from tradition only approaches, we prioritize creative solutions and technical approaches to complex challenges.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card className="text-center border-2 w-full md:w-[calc(33.333%-1.33rem)]">
+                <CardContent className="p-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                    <Globe className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-3">Global Citizenship</h3>
+                  <p className="font-body text-muted-foreground">
+                    We strive to make African students and leaders competitive on the world stage by fostering a global network of collaboration and knowledge sharing.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

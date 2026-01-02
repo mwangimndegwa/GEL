@@ -70,7 +70,7 @@ export default function GetInvolvedPage() {
                   <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
                     Volunteer With Us
                   </h2>
-                  <p className="font-body text-lg text-muted-foreground mb-8 leading-relaxed">
+                  <p className="font-body text-lg text-foreground mb-8 leading-relaxed">
                     Join our community of passionate volunteers making a real difference across Africa. Whether you have a few hours a week or want to commit to a long-term project, there's a place for you.
                   </p>
                   
@@ -81,7 +81,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Program Mentorship</h3>
-                        <p className="font-body text-sm text-muted-foreground">Guide and mentor participants in our BELM leadership program.</p>
+                        <p className="font-body text-sm text-foreground">Guide and mentor participants in our BELM leadership program.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -90,7 +90,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Learning Hub Support</h3>
-                        <p className="font-body text-sm text-muted-foreground">Help run our learning hubs and support students with their education.</p>
+                        <p className="font-body text-sm text-foreground">Help run our learning hubs and support students with their education.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -99,7 +99,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Skills-Based Volunteering</h3>
-                        <p className="font-body text-sm text-muted-foreground">Contribute your professional skills in tech, marketing, finance, or other areas.</p>
+                        <p className="font-body text-sm text-foreground">Contribute your professional skills in tech, marketing, finance, or other areas.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -108,7 +108,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Event Support</h3>
-                        <p className="font-body text-sm text-muted-foreground">Help organize and run our innovation challenges and community events.</p>
+                        <p className="font-body text-sm text-foreground">Help organize and run our innovation challenges and community events.</p>
                       </div>
                     </div>
                   </div>
@@ -187,7 +187,7 @@ export default function GetInvolvedPage() {
                           <CheckCircle2 className="h-8 w-8 text-primary" />
                         </div>
                         <h3 className="font-heading text-2xl font-bold mb-2">Thank You!</h3>
-                        <p className="font-body text-muted-foreground">
+                        <p className="font-body text-foreground">
                           Your volunteer application has been received. We'll be in touch soon!
                         </p>
                       </div>
@@ -204,8 +204,8 @@ export default function GetInvolvedPage() {
                   <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
                     Partner With GEL
                   </h2>
-                  <p className="font-body text-lg text-muted-foreground mb-8 leading-relaxed">
-                    We collaborate with organizations, corporations, and institutions that share our vision for a transformed Africa. Together, we can amplify our impact and create sustainable change.
+                  <p className="font-body text-lg text-foreground mb-8 leading-relaxed">
+                    We collaborate with organizations, corporations, and institutions that share our vision of transformed global communities. Together, we can amplify our impact and create sustainable change.
                   </p>
                   
                   <div className="space-y-6 mb-8">
@@ -215,7 +215,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Corporate Partnerships</h3>
-                        <p className="font-body text-sm text-muted-foreground">CSR programs, employee engagement, and strategic collaborations.</p>
+                        <p className="font-body text-sm text-foreground">CSR programs, employee engagement, and strategic collaborations.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -224,7 +224,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Educational Institutions</h3>
-                        <p className="font-body text-sm text-muted-foreground">Research collaborations, student programs, and knowledge exchange.</p>
+                        <p className="font-body text-sm text-foreground">Research collaborations, student programs, and knowledge exchange.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -233,7 +233,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">NGO Collaborations</h3>
-                        <p className="font-body text-sm text-muted-foreground">Joint programs, resource sharing, and collective impact initiatives.</p>
+                        <p className="font-body text-sm text-foreground">Joint programs, resource sharing, and collective impact initiatives.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -242,7 +242,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div>
                         <h3 className="font-heading font-semibold mb-1">Government Partnerships</h3>
-                        <p className="font-body text-sm text-muted-foreground">Policy development, program implementation, and capacity building.</p>
+                        <p className="font-body text-sm text-foreground">Policy development, program implementation, and capacity building.</p>
                       </div>
                     </div>
                   </div>
@@ -328,7 +328,7 @@ export default function GetInvolvedPage() {
                           <CheckCircle2 className="h-8 w-8 text-primary" />
                         </div>
                         <h3 className="font-heading text-2xl font-bold mb-2">Thank You!</h3>
-                        <p className="font-body text-muted-foreground">
+                        <p className="font-body text-foreground">
                           Your partnership inquiry has been received. Our team will contact you shortly.
                         </p>
                       </div>
@@ -345,7 +345,7 @@ export default function GetInvolvedPage() {
                   <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
                     Support Our Mission
                   </h2>
-                  <p className="font-body text-lg text-muted-foreground leading-relaxed">
+                  <p className="font-body text-lg text-foreground leading-relaxed">
                     Your donation directly supports our programs and helps us reach more communities across Africa. Every contribution makes a difference.
                   </p>
                 </div>
@@ -354,7 +354,7 @@ export default function GetInvolvedPage() {
                   <Card className="border-2 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6 text-center">
                       <div className="text-4xl font-bold font-heading text-primary mb-2">$50</div>
-                      <p className="font-body text-sm text-muted-foreground mb-4">
+                      <p className="font-body text-sm text-foreground mb-4">
                         Provides learning materials for 5 students
                       </p>
                       <Button className="w-full font-body">Donate $50</Button>
@@ -363,7 +363,7 @@ export default function GetInvolvedPage() {
                   <Card className="border-2 hover:shadow-lg transition-shadow border-primary">
                     <CardContent className="p-6 text-center">
                       <div className="text-4xl font-bold font-heading text-primary mb-2">$150</div>
-                      <p className="font-body text-sm text-muted-foreground mb-4">
+                      <p className="font-body text-sm text-foreground mb-4">
                         Sponsors one month of mentorship for a leader
                       </p>
                       <Button className="w-full font-body">Donate $150</Button>
@@ -372,7 +372,7 @@ export default function GetInvolvedPage() {
                   <Card className="border-2 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6 text-center">
                       <div className="text-4xl font-bold font-heading text-primary mb-2">$500</div>
-                      <p className="font-body text-sm text-muted-foreground mb-4">
+                      <p className="font-body text-sm text-foreground mb-4">
                         Funds a complete BELM program scholarship
                       </p>
                       <Button className="w-full font-body">Donate $500</Button>
@@ -430,7 +430,7 @@ export default function GetInvolvedPage() {
                       </div>
                       <div className="bg-muted rounded-lg p-6">
                         <h3 className="font-heading font-semibold mb-3">Your Impact</h3>
-                        <ul className="space-y-2 font-body text-sm text-muted-foreground">
+                        <ul className="space-y-2 font-body text-sm text-foreground">
                           <li className="flex items-center gap-2">
                             <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                             100% of your donation goes directly to programs
@@ -458,7 +458,7 @@ export default function GetInvolvedPage() {
                 </Card>
 
                 <div className="mt-12 text-center">
-                  <p className="font-body text-sm text-muted-foreground mb-4">
+                  <p className="font-body text-sm text-foreground mb-4">
                     Other ways to give: Corporate matching, planned giving, stock donations, and in-kind contributions.
                   </p>
                   <Button variant="link" className="font-body">
