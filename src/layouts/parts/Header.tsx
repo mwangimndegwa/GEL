@@ -167,7 +167,7 @@ const renderMobileMenu = () => {
       <button
         type="button"
         onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden p-2 rounded-full transition-colors hover:bg-slate-50 text-slate-900 z-[60]"
+        className="block lg:hidden p-2 rounded-full transition-colors hover:bg-slate-50 text-slate-900 z-[60]"
         aria-label="Open menu"
         aria-expanded={isMobileMenuOpen}
       >
@@ -340,6 +340,16 @@ const renderMobileMenu = () => {
       >
         <div className="container mx-auto px-2 md:px-4 pt-2 md:pt-4 max-w-full">
           {getHeaderContent()}
+          {/* Hamburger menu button: only visible on mobile/tablet */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="block lg:hidden p-2 rounded-full transition-colors hover:bg-slate-50 text-slate-900 z-[60] absolute top-4 right-4"
+            aria-label="Open menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <Menu size={26} />
+          </button>
         </div>
       </header>
       {isMobileMenuOpen && (
@@ -416,17 +426,6 @@ const renderMobileMenu = () => {
           </div>
         </div>
       )}
-      {/* Toggle Button (remains in header) */}
-      <button
-        type="button"
-        onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden p-2 rounded-full transition-colors hover:bg-slate-50 text-slate-900 z-[60] fixed top-4 right-4"
-        aria-label="Open menu"
-        aria-expanded={isMobileMenuOpen}
-        style={{ display: isMobileMenuOpen ? 'none' : 'block' }}
-      >
-        <Menu size={26} />
-      </button>
     </>
   );
 }
