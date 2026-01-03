@@ -92,7 +92,7 @@ export default function OurWorkPage() {
             {/* Left: narrative */}
             <div>
               <Badge className="mb-4" style={{ background: `${BRAND_BROWN}/10`, color: BRAND_BROWN }}>
-                Flagship Program
+                Flagship Fellowship Program
               </Badge>
 
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
@@ -104,9 +104,9 @@ export default function OurWorkPage() {
               </h3>
 
               <p className="font-body text-base text-gray-700 leading-relaxed mb-6">
-                Talent is equally distributed, but opportunity is not. In many parts of East Africa,
+                Talent is equally distributed, but opportunity is not. In many parts of the world,
                 brilliant young minds are stifled by a critical lack of resources. 
-                BELM is our flagship initiative in collaboration with Libraries and highly populated schools designed to dismantle these barriers. We don't just provide
+                BELM is our flagship initiative in collaboration with institutions designed to dismantle these barriers. We don't just provide
                 education; we provide the tools for self-directed learning and the framework for
                 ethical leadership.
               </p>
@@ -154,10 +154,10 @@ export default function OurWorkPage() {
               <Button
                 size="lg"
                 onClick={() => (window.location.href = 'https://forms.gle/cwS5BgLH2rGEozTS8')}
-                aria-label="Apply to BELM Program"
+                aria-label="Apply to BELM Fellowship Program"
                 className="bg-[#008000] border border-[#1a9a5a] text-white px-6 py-3 rounded-md inline-flex items-center gap-2 transition-colors duration-200 ease-out hover:bg-red-600 hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1a9a5a]/30"
               >
-                Apply to BELM Program
+                Apply to BELM Fellowship Program
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>
@@ -165,9 +165,9 @@ export default function OurWorkPage() {
             {/* Right: The Reality (data viz) */}
             <div className="rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white p-8">
               <div className="mb-6">
-                <h3 className="text-xl font-heading font-semibold">The Reality</h3>
-                <p className="text-sm text-black">
-                  Data points that shape our mission and the urgency of scale.
+                <h3 className="text-2xl font-heading font-bold text-center">The Reality in where we work</h3>
+                <p className="text-l text-black font-body leading-relaxed mt-2 text-center">
+                  Data points that shape our mission and the urgency of scale in our focus schools.
                 </p>
               </div>
 
@@ -190,12 +190,12 @@ export default function OurWorkPage() {
                   <div className="text-4xl md:text-5xl font-heading font-extrabold text-accent">
                     &lt;15%
                   </div>
-                  <div className="text-sm text-black mt-2">With reliable digital access</div>
+                  <div className="text-sm text-black mt-2">With reliable digital access and skills</div>
                 </div>
               </div>
 
               {/* Graph / illustrative area */}
-              <div className="mt-8 rounded-lg bg-gradient-to-b from-white to-gray-50 p-6 border border-gray-100">
+              <div className="mt-8 rounded-lg bg-gradient-to-b from-white to-gray-50 p-6 border border-gray-100 hidden lg:block">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-md bg-[url('/assets/classroom-muted.jpg')] bg-center bg-cover opacity-90 filter grayscale"></div>
                   <div>
