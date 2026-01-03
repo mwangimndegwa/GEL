@@ -416,17 +416,8 @@ const renderMobileMenu = () => {
           </div>
         </div>
       )}
-      {/* Toggle Button (remains in header) */}
-      <button
-        type="button"
-        onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden p-2 rounded-full transition-colors hover:bg-slate-50 text-slate-900 z-[60] fixed top-4 right-4"
-        aria-label="Open menu"
-        aria-expanded={isMobileMenuOpen}
-        style={{ display: isMobileMenuOpen ? 'none' : 'block' }}
-      >
-        <Menu size={26} />
-      </button>
+      {/* Toggle Button (mobile only, not fixed, not duplicated) */}
+      {/* This button should only be rendered in the header content for mobile, not here globally */}
     </>
   );
 }
