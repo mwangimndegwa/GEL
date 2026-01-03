@@ -92,9 +92,9 @@ const footerConfig: RootLayoutConfig['footer'] = {
   ],
 
   bottomLinks: [
-    { href: '/privacy', label: 'Privacy Policy' },
+    { href: '/privacy-policy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Use' },
-    { href: '/contact', label: 'Contact' }
+    { href: 'mailto:info@globaleducatedleaders.org', label: 'Contact', external: true }
   ],
   
   copyright: {

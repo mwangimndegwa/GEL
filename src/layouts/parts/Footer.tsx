@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
@@ -164,33 +165,43 @@ export default function FooterPattern({ config = {}, className }: FooterPatternP
 
     {/* Social links – above legal links */}
     {socialLinks.length > 0 && (
-      <div className="flex flex-wrap justify-center gap-4">
-        {socialLinks.map((social) => (
-          <a
-            key={social.href}
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-sm text-gray-600 hover:text-[#003366] transition-colors"
-            aria-label={social.label}
-          >
-            {social.icon || social.label}
-          </a>
-        ))}
+      <div className="max-w-4xl mx-auto text-center pb-1 sm:pb-2 border-b border-slate-300/40">
+        <div className="flex flex-wrap justify-center items-center gap-2">
+          {socialLinks
+            .filter(social => !/twitter/i.test(social.label))
+            .map((social, idx, arr) => {
+              const isLast = idx === arr.length - 1;
+              return (
+                <React.Fragment key={social.href}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-sm text-gray-600 hover:text-blue-800 transition-colors"
+                    aria-label={social.label}
+                  >
+                    {social.icon || social.label}
+                  </a>
+                  {!isLast && <span className="mx-2 text-gray-400 select-none">|</span>}
+                </React.Fragment>
+              );
+            })}
+        </div>
       </div>
     )}
 
     {/* Legal / utility links – privacy, terms, contact */}
     {bottomLinks.length > 0 && (
-      <nav className="flex flex-wrap justify-center gap-6">
-        {bottomLinks.map((link) =>
-          link.external ? (
+      <nav className="pt-0 sm:pt-0.5 text-center max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-2">
+        {bottomLinks.map((link, idx) => {
+          const isLast = idx === bottomLinks.length - 1;
+          const linkNode = link.external ? (
             <a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-body text-sm text-gray-600 hover:text-[#003366] transition-colors"
+              className="font-body text-sm text-gray-600 hover:text-[#003366] transition-colors underline underline-offset-4 decoration-2"
             >
               {link.label}
             </a>
@@ -198,12 +209,18 @@ export default function FooterPattern({ config = {}, className }: FooterPatternP
             <Link
               key={link.href}
               to={link.href}
-              className="font-body text-sm text-gray-600 hover:text-[#003366] transition-colors"
+              className="font-body text-sm text-gray-600 hover:text-[#003366] transition-colors underline underline-offset-4 decoration-2"
             >
               {link.label}
             </Link>
-          )
-        )}
+          );
+          return (
+            <React.Fragment key={link.href}>
+              {linkNode}
+              {!isLast && <span className="mx-2 text-gray-400 select-none">|</span>}
+            </React.Fragment>
+          );
+        })}
       </nav>
     )}
   </div>

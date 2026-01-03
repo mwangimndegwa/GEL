@@ -1,12 +1,160 @@
+// Modal for BELM Program Launch
+function BELMProgramModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  const handleSubmitInquiry = () => {
+    window.location.href =
+      'mailto:info@globaleducatedleaders.org?subject=BELM%20Partnership%20Outreach%202026';
+  };
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full px-8 py-10 animate-fadeIn border-t-8 border-[#B5651D]">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold focus:outline-none"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#FFF6EC] text-[#B5651D] text-3xl">
+            {/* Icon for Institutional Mandate */}
+            <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-home"><path d="M3 12L16 3l13 9"/><path d="M5 10v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V10"/></svg>
+          </span>
+          <div>
+            <div className="font-heading text-2xl md:text-3xl font-bold text-gray-900 leading-tight">Institutional Mandate</div>
+            <div className="uppercase text-xs font-semibold tracking-wider text-[#B5651D] mt-0.5">Partnership Outreach 2026</div>
+          </div>
+        </div>
+        <div className="text-[15px] font-body text-gray-800 mb-4 mt-2">
+          Following the successful launch of our flagship leadership mandate, we are scaling our infrastructure to bridge the knowledge gap for emerging civic leaders. Our objective is to provide curated knowledge resources and mentorship to a student cohort of <span className="font-bold">500 – 700 students</span>.
+        </div>
+        <div className="bg-[#F6F8FA] rounded-xl p-5 mb-5 border border-[#E5E7EB]">
+          <div className="flex items-center gap-2 mb-3">
+            <svg width="18" height="18" fill="none" stroke="#B5651D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info"><circle cx="9" cy="9" r="8"/><line x1="9" y1="13" x2="9" y2="9"/><line x1="9" y1="7" x2="9" y2="7"/></svg>
+            <span className="font-heading text-sm font-semibold text-[#B5651D] tracking-wide uppercase">Eligibility Criteria</span>
+          </div>
+          <div className="grid grid-cols-2 gap-4 text-[15px]">
+            <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
+              <div className="text-xs font-semibold text-gray-500 mb-1">Region</div>
+              <div className="font-bold text-gray-900">Kenya (National Wide)</div>
+            </div>
+            <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
+              <div className="text-xs font-semibold text-gray-500 mb-1">Institution Type</div>
+              <div className="font-bold text-gray-900">Primary / High Schools</div>
+            </div>
+            <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
+              <div className="text-xs font-semibold text-gray-500 mb-1">Teacher Ratio</div>
+              <div className="font-bold text-gray-900">60+ Avg Students/Teacher</div>
+            </div>
+            <div className="bg-white rounded-lg p-3 border border-[#E5E7EB]">
+              <div className="text-xs font-semibold text-gray-500 mb-1">Resource Ratio</div>
+              <div className="font-bold text-gray-900">1:8 Textbook/Student</div>
+            </div>
+          </div>
+        </div>
+        <div className="text-[15px] font-body text-gray-800 mb-6">
+          We are actively scouting for institutions that meet these specific criteria to help us deliver high-impact leadership and educational toolkits. If your school fits this profile, we invite you to register your interest immediately.
+        </div>
+        <div className="flex gap-3 mt-2">
+          <button
+            onClick={onClose}
+            className="px-5 py-2.5 rounded-lg bg-white border border-gray-300 text-gray-900 font-semibold hover:bg-gray-100 transition-colors text-base"
+          >
+            Return
+          </button>
+          <button
+            onClick={handleSubmitInquiry}
+            className="px-5 py-2.5 rounded-lg bg-[#B5651D] text-white font-semibold hover:bg-[#8A5830] transition-colors text-base"
+          >
+            Submit Inquiry
+          </button>
+        </div>
+        <style>{`
+          .animate-fadeIn { animation: fadeIn 0.25s ease; }
+          @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        `}</style>
+      </div>
+    </div>
+  );
+}
+// Modal for Talented Engagement: Vetted Outreach
+function VettedOutreachModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full px-7 py-8 animate-fadeIn border-t-8 border-[#FFD166]">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-bold focus:outline-none"
+          aria-label="Close"
+        >
+          ×
+        </button>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#FFF7E0] text-[#FFD166] text-2xl">
+            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user-check"><path d="M8 18v-1a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v1"/><circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+          </span>
+          <div>
+            <div className="font-heading text-xl md:text-2xl font-bold text-gray-900 leading-tight">Volunteer Absorption</div>
+            <div className="uppercase text-xs font-semibold tracking-wider text-[#FFD166] mt-0.5">Phased Process</div>
+          </div>
+        </div>
+        <div className="text-[15px] font-body text-gray-800 mb-4 mt-2">
+          Thank you for your patience and continued interest in our mission. To ensure every contributor is effectively integrated, our volunteer absorption is being conducted in <span className="font-semibold">deliberate phases</span>.
+        </div>
+        <blockquote className="border-l-4 border-[#B6C6E3] bg-[#F6F8FA] text-[15px] text-gray-700 italic px-4 py-2 mb-4">
+          "Currently, we are reaching out to candidates who expressed a specific interest in the <span className='font-semibold'>education sector</span> during last year's application cycle."
+        </blockquote>
+        <div className="text-[15px] font-body text-gray-800 mb-6">
+          We are excited to begin engaging this cohort in our upcoming education initiatives and learning hub expansions. If your interests lie in other sectors, please stay tuned as we roll out subsequent engagement phases throughout 2026.
+        </div>
+        <button
+          onClick={onClose}
+          className="w-full mt-2 px-5 py-2.5 rounded-lg bg-[#232B36] text-white font-semibold hover:bg-[#1a202c] transition-colors text-base"
+        >
+          Understood
+        </button>
+        <style>{`
+          .animate-fadeIn { animation: fadeIn 0.25s ease; }
+          @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        `}</style>
+      </div>
+    </div>
+  );
+}
 'use client';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, Users, Sprout, Cpu, Target, ArrowRight, TrendingUp, Award, Globe } from 'lucide-react';
+import { BookOpen, Users, Sprout, Cpu, Target, ArrowRight, TrendingUp, Award, Globe, UserCheck } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
+// Simple modal component for 'Coming soon!'
+function ComingSoonModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-2xl px-8 py-8 max-w-xs w-full text-center relative animate-fadeIn">
+        <h3 className="text-2xl font-heading font-bold mb-2 text-[#B5651D]">Coming soon!</h3>
+        <p className="font-body text-gray-700 mb-4">This feature will be available soon.</p>
+        <button
+          onClick={onClose}
+          className="mt-2 px-5 py-2 rounded-lg bg-[#003366] text-white font-semibold hover:bg-[#264F80] transition-colors"
+        >
+          Close
+        </button>
+      </div>
+      <style>{`
+        .animate-fadeIn { animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+      `}</style>
+    </div>
+  );
+}
+import HeroBackground from '@/components/HeroBackground';
 
 const missionText =
 "We are cultivating a global community of leaders who leverage data and technology to drive sustainable development, foster social impact, improve food security, and promote equitable economic opportunities.";
+
 
 function useInView(options?: IntersectionObserverInit) {
   const [inView, setInView] = useState(false);
@@ -115,18 +263,19 @@ function MissionTypewriter({ className }: { className?: string; }) {
 }
 
 export default function HomePage() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [showVettedModal, setShowVettedModal] = useState(false);
+  const [showBELMModal, setShowBELMModal] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
+  // Removed unused isVisible state
   const [counts, setCounts] = useState({ leaders: 0, communities: 0, programs: 0 });
 
   useEffect(() => {
-    setIsVisible(true);
-
     // Animated counters for impact stats
     const duration = 2000;
     const steps = 60;
     const interval = duration / steps;
 
-    const targets = { leaders: 5000, communities: 50, programs: 15 };
+    const targets = { leaders: 500, communities: 12, programs: 5 };
     let step = 0;
 
     const timer = setInterval(() => {
@@ -200,27 +349,27 @@ export default function HomePage() {
   const updates = [
   {
     title: 'BELM Program Launch',
-    category: 'Impact Story',
-    date: '2024',
+    category: 'Program Application',
+    date: 'JAN 2026',
     icon: Award,
     description:
-      'Successfully launched our flagship leadership program in 5 countries, training 500+ emerging leaders.'
+      'We successfully launched our flagship leadership mandate, expanding access to curated knowledge resources for 500+ emerging civic leaders.'
   },
   {
-    title: 'Learning Hubs Expansion',
-    category: 'Program Update',
-    date: '2024',
+    title: 'Talented Engagement: Vetted Outreach',
+    category: 'Strategic Milestone',
+    date: 'JAN 2026',
+    icon: UserCheck,
+    description:
+      'Following a rigorous vetting of our 2025 volunteer applications, we have begun personalized outreach to high-talent volunteers to spearhead our upcoming global initiatives.'
+  },
+  {
+    title: 'Digital Horizon: 2026 Global Launch',
+    category: 'News & Events',
+    date: 'JAN 2026',
     icon: TrendingUp,
     description:
-      'Opened 10 new curated learning hubs providing access to quality education resources.'
-  },
-  {
-    title: 'Innovation Challenge',
-    category: 'News & Events',
-    date: '2024',
-    icon: Globe,
-    description:
-      'Hosted our first Innovate for Impact challenge with 200+ participants across 15 communities.'
+      'As of today, our digital ecosystem is live. This platform marks a new era for global collaboration, real-time impact tracking, and fellowship integration.'
   }
   ];
 
@@ -229,41 +378,33 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Full-width Hero Image */}
-        <div className="absolute inset-0">
-          <img
-            src="https://media.gettyimages.com/id/2188069587/photo/confident-computer-programmer-smiling-with-crossed-arms-in-modern-office.jpg?b=1&s=2048x2048&w=0&k=20&c=FfAy9K0FWh1FwdEC_8UB7S6F_G4VCCUNhPebiDNo-L0="
-            alt="African woman leader"
-            className="w-full h-full object-cover" />
-
-          {/* Soft overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
-        </div>
-        
+        <HeroBackground />
         {/* Centered Content */}
         <div className="relative z-10 container mx-auto px-4 text-center">
           {/* Headline - Large, Bold, Serif Font */}
-          <h1 className="text-sm font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Empowering Leaders, Transforming Communities
-          </h1>
-          
+            <h1 className="text-white font-serif font-bold text-4xl md:text-6xl lg:text-7xl text-center mb-6">
+              Empowering Leaders, Transforming Communities
+            </h1>
           {/* Subheadline - Body Font, Centered, Readable */}
-          <MissionTypewriter className="font-body text-lg md:text-xl lg:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed" />
-          
+            <p className="text-white text-lg md:text-xl text-center max-w-3xl mb-12">
+              We are cultivating a global community of leaders who leverage data and technology to drive sustainable development, foster social impact, improve food security, and promote equitable economic opportunities.
+            </p>
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/our-work"
-              className="px-8 py-4 rounded-lg font-semibold transition-opacity hover:opacity-90"
+              className="w-full sm:w-auto font-semibold transition-opacity hover:opacity-90
+                px-4 py-2 rounded-md text-base
+                md:px-8 md:py-4 md:rounded-lg md:text-lg"
               style={{ backgroundColor: '#800000', color: '#FFFFFF' }}>
-
               Explore Our Work
             </a>
             <a
               href="/get-involved"
-              className="px-8 py-4 bg-white rounded-lg font-semibold transition-colors hover:bg-gray-100"
+              className="w-full sm:w-auto bg-white font-semibold transition-colors hover:bg-gray-100
+                px-4 py-2 rounded-md text-base
+                md:px-8 md:py-4 md:rounded-lg md:text-lg"
               style={{ color: '#003366' }}>
-
               Get Involved
             </a>
           </div>
@@ -278,7 +419,7 @@ export default function HomePage() {
               <div className="text-4xl md:text-5xl font-bold font-heading mb-2">
                 {counts.leaders.toLocaleString()}+
               </div>
-              <div className="text-lg font-body opacity-90">Leaders Trained</div>
+              <div className="text-lg font-body opacity-90">Young Leaders Benefiting</div>
             </div>
             <div className="flex flex-col items-center">
               <div className="text-4xl md:text-5xl font-bold font-heading mb-2">
@@ -296,11 +437,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Founder Note Section */}
+      <section className="relative py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12 max-w-5xl">
+          <div className="flex-shrink-0 flex justify-center md:justify-start w-full md:w-auto">
+            <img
+              src="https://i.ibb.co/rKFMdkw8/w-ELCOME.png"
+              alt="Mwangi M. Ndegwa, Founder"
+              className="w-64 h-64 md:w-80 md:h-80 rounded-full object-contain shadow-2xl border-4 border-blue-900 bg-white"
+              style={{ background: 'white' }}
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-blue-900 mb-6">A Note from our Founder</h2>
+            <div className="relative max-w-3xl mx-auto mb-6">
+              <p
+                className="font-serif italic text-base sm:text-base md:text-xl leading-relaxed text-[#0f1720] opacity-0 founder-quote-fadein"
+                style={{ transition: 'opacity 1.2s ease', position: 'relative' }}
+              >
+                <span className="absolute -left-8 -top-2 text-[3rem] text-[#B5651D]/20 select-none hidden md:block" aria-hidden="true">“</span>
+                Passion for community is at the heart of everything we do. We believe that leadership is not a title, but a responsibility to serve, and that technology is the greatest tool we have to scale that service across the globe.<br /><br />
+                I founded ‘Global Educated Leaders’ to be a home for those who want to serve and dream of a more equitable, tech-forward, and innovative led world. Seeing the talent in our communities inspired me to create a space where that potential meets opportunity.<br /><br />
+                We are so glad you’re here. Take a look at our initiatives, meet our team, and see how we can transform the future, together.
+                <span className="absolute -right-8 -bottom-2 text-[3rem] text-[#B5651D]/20 select-none hidden md:block" aria-hidden="true">”</span>
+              </p>
+              <style>{`
+                .founder-quote-fadein { animation: founderFadeIn 1.2s ease 0.1s forwards; }
+                @keyframes founderFadeIn { to { opacity: 1; } }
+              `}</style>
+            </div>
+            <div className="mt-3 text-left">
+              <span className="block font-serif text-xl font-semibold text-[#003366]">Mwangi M. Ndegwa</span>
+              <span className="block font-sans text-sm text-[#003366]/80 uppercase tracking-wide">Founder/Executive Director</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
             {/* Five Pillars Grid */}
       <section
         id="pillars"
         ref={pillarsSectionRef}
-        className="relative py-20 md:py-28 bg-background overflow-hidden"
+        className="relative pt-8 pb-20 md:pt-28 md:pb-28 bg-background overflow-hidden"
       >
         {/* Scroll–reactive gradient background */}
         <div
@@ -463,9 +641,13 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 className="font-body text-sm md:text-base rounded-full px-6 py-3 border-white/60 text-white hover:bg-white/10 hover:text-white"
+                onClick={() => setShowComingSoon(true)}
+                type="button"
               >
                 View all updates
               </Button>
+              {/* Coming Soon Modal */}
+              <ComingSoonModal open={showComingSoon} onClose={() => setShowComingSoon(false)} />
             </div>
           </div>
 
@@ -473,6 +655,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {updates.map((update) => {
             const Icon = update.icon;
+            const isDigitalHorizon = update.title === 'Digital Horizon: 2026 Global Launch';
+            const isVettedOutreach = update.title === 'Talented Engagement: Vetted Outreach';
+            const isBELMProgram = update.title === 'BELM Program Launch';
             return (
               <Card
                 key={update.title}
@@ -484,7 +669,7 @@ export default function HomePage() {
                     <span
                       className="inline-flex items-center px-3.5 py-1 rounded-full text-[11px] font-body font-semibold tracking-wide"
                       style={{
-                        backgroundColor: 'rgba(0, 51, 102, 0.08)',     // soft blue tint
+                        backgroundColor: 'rgba(0, 51, 102, 0.08)',
                         color: '#003366'
                       }}
                     >
@@ -499,7 +684,7 @@ export default function HomePage() {
                   <div
                     className="inline-flex items-center justify-center w-11 h-11 rounded-full mb-5 group-hover:scale-110 transition-transform"
                     style={{
-                      backgroundColor: 'rgba(181, 101, 29, 0.12)',   // soft brown halo
+                      backgroundColor: 'rgba(181, 101, 29, 0.12)',
                       color: '#B5651D'
                     }}
                   >
@@ -521,18 +706,52 @@ export default function HomePage() {
                   </p>
 
                   {/* link / CTA */}
-                  <button
-                    type="button"
-                    className="font-body text-sm inline-flex items-center"
-                    style={{ color: '#003366' }}
-                  >
-                    Read more
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-[#B5651D]" />
-                  </button>
+                  {isDigitalHorizon ? (
+                    <a
+                      href="/"
+                      className="font-body text-sm inline-flex items-center"
+                      style={{ color: '#003366' }}
+                    >
+                      Explore Platform
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-[#B5651D]" />
+                    </a>
+                  ) : isVettedOutreach ? (
+                    <button
+                      type="button"
+                      className="font-body text-sm inline-flex items-center"
+                      style={{ color: '#003366' }}
+                      onClick={() => setShowVettedModal(true)}
+                    >
+                      Read more
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-[#B5651D]" />
+                    </button>
+                  ) : isBELMProgram ? (
+                    <Button
+                      variant="link"
+                      className="p-0 h-auto group/btn font-body"
+                      onClick={() => setShowBELMModal(true)}
+                    >
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="font-body text-sm inline-flex items-center"
+                      style={{ color: '#003366' }}
+                    >
+                      Read more
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:text-[#B5651D]" />
+                    </button>
+                  )}
                 </CardContent>
               </Card>
             );
           })}
+          {/* BELM Program Modal - render once outside the map */}
+          <BELMProgramModal open={showBELMModal} onClose={() => setShowBELMModal(false)} />
+          {/* Vetted Outreach Modal - render once outside the map */}
+          <VettedOutreachModal open={showVettedModal} onClose={() => setShowVettedModal(false)} />
         </div>
         </div>
       </section>
@@ -548,12 +767,24 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group font-body">
-              Partner With Us
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <a
+                href="/get-involved#partner"
+                className="w-full h-full flex items-center justify-center text-lg px-8 py-6 group font-body"
+                style={{ textDecoration: 'none' }}
+              >
+                Partner With Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary group font-body">
-              Make a Donation
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <a
+                href="/get-involved#donate"
+                className="w-full h-full flex items-center justify-center text-lg px-8 py-6 group font-body"
+                style={{ textDecoration: 'none' }}
+              >
+                Make a Donation
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
         </div>

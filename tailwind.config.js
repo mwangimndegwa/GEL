@@ -14,7 +14,7 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			serif: ['Playfair Display', 'Merriweather', 'serif'],
+  			serif: ['Lora', 'Playfair Display', 'Merriweather', 'serif'],
   			sans: ['Montserrat', 'Open Sans', 'sans-serif'],
   			heading: ['Playfair Display', 'serif'],
   			body: ['Montserrat', 'sans-serif']
