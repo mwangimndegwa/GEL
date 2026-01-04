@@ -466,7 +466,7 @@ export default function HomePage() {
                 @keyframes founderFadeIn { to { opacity: 1; } }
               `}</style>
             </div>
-            <div className="mt-3 text-left">
+            <div className="mt-3 text-right items-start">
               <span className="block font-serif text-xl font-semibold text-[#003366]">Mwangi M. Ndegwa</span>
               <span className="block font-sans text-sm text-[#003366]/80 uppercase tracking-wide">Founder/Executive Director</span>
             </div>
