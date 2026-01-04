@@ -19,6 +19,7 @@ const BRAND_BLUE = '#003366';
 
 export default function OurWorkPage() {
   const [hoverPreview, setHoverPreview] = useState<string | null>(null);
+  const [showPastProjectsPopup, setShowPastProjectsPopup] = useState(false);
 
   // small set of demo images — replace with preferred assets in public/assets
   const hoverImages: Record<string, string> = {
@@ -374,7 +375,11 @@ export default function OurWorkPage() {
               </p>
 
               <div className="flex gap-4">
-                <Button size="lg" style={{ background: BRAND_BLUE, color: '#fff' }}>
+                <Button
+                  size="lg"
+                  style={{ background: BRAND_BLUE, color: '#fff' }}
+                  onClick={() => setShowPastProjectsPopup(true)}
+                >
                   View Past Projects
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -388,6 +393,21 @@ export default function OurWorkPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </div>
+
+              {showPastProjectsPopup && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40">
+                  <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full text-center">
+                    <h2 className="text-xl font-bold mb-4">Thank you for your interest in our work</h2>
+                    <p className="mb-4">We currently have active projects.<br />Check back soon!</p>
+                    <button
+                      className="mt-2 px-4 py-2 bg-[#003366] text-white rounded hover:bg-[#002244] transition-colors"
+                      onClick={() => setShowPastProjectsPopup(false)}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="order-1 lg:order-2">
