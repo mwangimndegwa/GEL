@@ -1,6 +1,7 @@
 import Website from '@/layouts/Website';
 import Header, { HeaderConfig } from '@/layouts/parts/Header';
 import Footer, { FooterConfig } from '@/layouts/parts/Footer';
+import FloatingChatWidget from '@/components/FloatingChatWidget';
 
 /**
  * Root layout component that wraps all pages with consistent header and footer
@@ -44,6 +45,7 @@ export default function RootLayout({ children, config = {} }: RootLayoutProps) {
     <Website>
       {config.header && <Header config={config.header} />}
       {children}
+      <FloatingChatWidget />
       {config.footer && <Footer config={config.footer} />}
     </Website>
   );

@@ -386,7 +386,7 @@ export default function HomePage() {
               Empowering Leaders, Transforming Communities
             </h1>
           {/* Subheadline - Body Font, Centered, Readable */}
-            <p className="text-white text-lg md:text-xl text-center max-w-3xl mb-12">
+            <p className="text-white text-lg md:text-xl text-center max-w-3xl mb-12 mx-auto">
               We are cultivating a global community of leaders who leverage data and technology to drive sustainable development, foster social impact, improve food security, and promote equitable economic opportunities.
             </p>
           {/* CTA Buttons */}
