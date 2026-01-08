@@ -49,7 +49,7 @@ export default function AboutPage() {
     },
     {
       name: 'Esther Lozi',
-      role: 'Vice President of Programs',
+      role: 'Country Director, Kenya',
       image: 'https://i.ibb.co/XrhtZsXJ/cropped.jpg',
       bio: 'Environmental and GIS professional, with 4+ years of experience in sustainable development and community-based projects. University of Nairobi alumnus passionate in environmental monitoring, project planning, and community impact.'
     },
