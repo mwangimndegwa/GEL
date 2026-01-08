@@ -15,12 +15,12 @@
 
   // rotating greetings + WIP notice
   const GREETING_VARIANTS = [
-    "Welcome — ask me about our programs, donations, partnerships, or volunteering opportunities.",
+    "Welcome! Ask me about our programs, donations, partnerships, or volunteering opportunities.",
     "Hi there! I can help with program details, how to donate, or ways to get involved.",
-    "Hello — curious about our impact or how to partner with us? Ask me anything.",
-    "Good to see you — I can guide you through our programs, donation options, and volunteering."
+    "Hello! Curious about our impact or how to partner with us? Ask me anything.",
+    "Good to see you! I can guide you through our programs, donation options, and volunteering."
   ];
-  const WIP_NOTICE = "Note: this assistant is a work in progress & some answers may be partial. For urgent assistance, please use the Contact page.";
+  const WIP_NOTICE = "Note: this assistant is a work in progress & some answers may be partial. For urgent assistance, please contact us directly.";
   const GREETING_SHOW_ON_OPEN_ONLY = true;
 
   // fallback FAQ if /faq.json is missing or malformed
