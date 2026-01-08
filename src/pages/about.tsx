@@ -79,24 +79,9 @@ export default function AboutPage() {
       affiliation: 'AgapeCode Doula LLC'
     },
     {
-      name: 'James Omondi',
-      role: 'Technology Advisor',
-      affiliation: 'Former CTO, Safaricom'
-    },
-    {
-      name: 'Aisha Kamara',
-      role: 'Community Development Advisor',
-      affiliation: 'UN Women Africa'
-    },
-    {
-      name: 'Dr. Kofi Annan Jr.',
-      role: 'Leadership Advisor',
-      affiliation: 'Harvard Kennedy School'
-    },
-    {
-      name: 'Zainab Mohammed',
-      role: 'Impact Measurement Advisor',
-      affiliation: 'Gates Foundation'
+      name: 'Ann Njenga',
+      role: 'Agriculture Strategist',
+      affiliation: 'Principal Agricultural Practitioner'
     }
   ];
 

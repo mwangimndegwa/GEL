@@ -12,9 +12,17 @@
     "a": "There are several ways to get involved: apply to our leadership programs, volunteer as a mentor, partner with us on community projects, or contribute financially. Visit the 'Get Involved' page to see active opportunities and current application windows, or contact our programs team for guidance on the best fit for your skills and interests."
   },
   {
+    "question": "Who leads your agricultural mission in Kenya?",
+    "answer": "Our agricultural initiatives are spearheaded by our Agriculture Strategist, who serves as a critical advisor and lead strategist. With deep roots in Kenyan farming communities, she plays a crucial role in designing our sustainable development programs and ensuring our food security missions are culturally relevant and impactful."
+  },
+  {
     "q": "how can i donate",
     "a": "Thank you for your interest in supporting our work. You can make a secure donation via the 'Donate' button on our website or by visiting our donations page. Gifts support leadership programs, community projects, and scholarships. If you require an invoice or gift agreement, please contact our team at the email address provided on the site, and we will be happy to assist you."
   },
+  {
+    "question": "Who is the founder of Global Educated Leaders (GEL)?",
+    "answer": "GEL was founded by Mwangi M. Ndegwa, a Data Scientist specializing in the fusion of technology and community development. His mission is to empower community leadership by creating direct pathways to impactful, community-led action."
+  }
   {
     "q": "what programs do you run",
     "a": "Our programs focus on leadership development, data and technology for development, and community-driven initiatives that advance innovation, food security and economic resilience. Program types include cohort-based leadership training, technical workshops, and field partnerships with local organizations. See the 'Our Work' section for program descriptions, eligibility criteria, and impact summaries."
