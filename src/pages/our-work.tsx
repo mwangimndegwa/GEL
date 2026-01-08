@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import RealityInfographic from '../components/RealityInfographic';
 import {
   Target,
   BookOpen,
@@ -24,13 +25,15 @@ export default function OurWorkPage() {
   // small set of demo images — replace with preferred assets in public/assets
   const hoverImages: Record<string, string> = {
     hardware:
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=60&auto=format&fit=crop',
+      'https://i.ibb.co/9kL0F2KT/Screenshot-2026-01-07-at-11-58-48-PM.png',
     connectivity:
       'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=60&auto=format&fit=crop',
     curriculum:
-      'https://images.unsplash.com/photo-1528216311170-3b4f4b8da0a9?w=1200&q=60&auto=format&fit=crop',
+      'https://i.ibb.co/VYXY3GfJ/Screenshot-2026-01-07-at-11-52-54-PM.png',
     mentorship:
-      'https://i.ibb.co/KxRP7W6h/B-pick.jpg'
+      'https://i.ibb.co/KxRP7W6h/B-pick.jpg',
+    access:
+      'https://i.ibb.co/1JTbzR3b/59ce8efa94628e94f668db9007bbdc6f.jpg'
   };
 
   const handleFindHub = () => {
@@ -164,82 +167,7 @@ export default function OurWorkPage() {
             </div>
 
             {/* Right: The Reality (data viz) */}
-            <div className="rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-b from-gray-50 to-white p-8">
-              <div className="mb-6">
-                <h3 className="text-2xl font-heading font-bold text-center">The Reality in where we work</h3>
-                <p className="text-l text-black font-body leading-relaxed mt-2 text-center">
-                  Data points that shape our mission and the urgency of scale in our focus schools.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
-                <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-heading font-extrabold" style={{ color: BRAND_BROWN }}>
-                    60+
-                  </div>
-                  <div className="text-sm text-black mt-2">Avg students per teacher</div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-heading font-extrabold" style={{ color: BRAND_BLUE }}>
-                    1:8
-                  </div>
-                  <div className="text-sm text-black mt-2">Textbooks to students (ratio)</div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-heading font-extrabold text-accent">
-                    &lt;15%
-                  </div>
-                  <div className="text-sm text-black mt-2">With reliable digital access and skills</div>
-                </div>
-              </div>
-
-              {/* Graph / illustrative area */}
-              <div className="mt-8 rounded-lg bg-gradient-to-b from-white to-gray-50 p-6 border border-gray-100 hidden lg:block">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-md bg-[url('/assets/classroom-muted.jpg')] bg-center bg-cover opacity-90 filter grayscale"></div>
-                  <div>
-                    <div className="font-heading text-lg font-semibold">STATISTICS</div>
-                    <div className="text-sm text-black">(muted photo, high-quality — no sad imagery)</div>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  {/* small infographic bars */}
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex justify-between text-xs text-black mb-1">
-                        <span>Students per teacher</span>
-                        <span>60+</span>
-                      </div>
-                      <div className="h-2 rounded bg-gray-200">
-                        <div className="h-2 rounded" style={{ width: '90%', background: BRAND_BROWN }} />
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs text-black mb-1">
-                        <span>Textbook availability</span>
-                        <span>1:8</span>
-                      </div>
-                      <div className="h-2 rounded bg-gray-200">
-                        <div className="h-2 rounded" style={{ width: '50%', background: BRAND_BLUE }} />
-                      </div>
-                    </div>
-
-                    <div>
-                      <div className="flex justify-between text-xs text-black mb-1">
-                        <span>Digital access</span>
-                        <span>&lt;15%</span>
-                      </div>
-                      <div className="h-2 rounded bg-gray-200">
-                        <div className="h-2 rounded bg-accent" style={{ width: '15%' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <RealityInfographic brandBlue={BRAND_BLUE} brandBrown={BRAND_BROWN} brandAccent="#008000" />
           </div>
         </div>
       </section>
@@ -342,8 +270,8 @@ export default function OurWorkPage() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-full text-muted-foreground">
-                      Hover over a point to see a preview
+                    <div className="flex items-center justify-center h-full">
+                      ...
                     </div>
                   )}
                 </div>

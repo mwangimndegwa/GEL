@@ -86,7 +86,6 @@ const footerConfig: RootLayoutConfig['footer'] = {
 
   socialLinks: [
     { href: 'https://www.facebook.com/share/1BiceCpEwT/?mibextid=wwXIfr', label: 'Facebook' },
-    { href: 'https://twitter.com/globaleducatedleaders', label: 'Twitter' },
     { href: 'https://www.instagram.com/globaleducatedleaders?igsh=MXBsbW4xNzE5MTR5eQ==', label: 'Instagram' },
     { href: 'https://www.linkedin.com/company/globaleducatedleaders/', label: 'LinkedIn' }
   ],

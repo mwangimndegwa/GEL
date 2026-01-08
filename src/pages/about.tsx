@@ -48,10 +48,10 @@ export default function AboutPage() {
       bio: 'Former Chair of the Executive Board of Kenya with 7+ years of experience in Non-Profits. Currently an MS Student in Data Science, Analytics, and Engineering at Arizona State University.'
     },
     {
-      name: 'Kwame Mensah',
-      role: 'Director of Programs',
-      image: 'https://media.gettyimages.com/id/856955940/photo/studio-shot-of-young-handsome-african-businessman-wearing-blue-suit-and-eyeglasses-against.jpg?b=1&s=2048x2048&w=0&k=20&c=sehfPj91F5eTkAR2rATbjk454XfOpTA1xN73b1Go_CE=',
-      bio: 'Tech entrepreneur and educator. Founded 3 successful EdTech startups across West Africa. MIT Sloan MBA.'
+      name: 'Esther Lozi',
+      role: 'Vice President of Programs',
+      image: 'https://i.ibb.co/XrhtZsXJ/cropped.jpg',
+      bio: 'Environmental and GIS professional, with 4+ years of experience in sustainable development and community-based projects. University of Nairobi alumnus passionate in environmental monitoring, project planning, and community impact.'
     },
     {
       name: 'Amina Zuma',
@@ -62,21 +62,21 @@ export default function AboutPage() {
     {
       name: 'Collins Kili',
       role: 'Project Manager',
-      image: 'https://media.gettyimages.com/id/639465722/photo/close-up-portrait-of-serious-man.jpg?b=1&s=2048x2048&w=0&k=20&c=73c5diJ1bK7IaQJ01dzaaROXkh_C9bwAofK0dUEsCgU=',
+      image: 'https://i.ibb.co/F4z80WnY/crop.jpg',
       bio: 'Holds an MS in Management with Project Management from BPP University. With a technical mastery of statistical modeling with 10+ years of community engagement, he bridges the gap between complex data and real-world solutions.'
     }
   ];
 
   const advisory = [
     {
-      name: 'Prof. Chinua Achebe',
-      role: 'Education Advisor',
+      name: 'Coach Godfrey Otero',
+      role: 'Sustainability Advisor',
       affiliation: 'University of Lagos'
     },
     {
-      name: 'Dr. Wangari Mwangi',
-      role: 'Sustainability Advisor',
-      affiliation: 'African Development Bank'
+      name: 'Marlene Morris',
+      role: 'Education Advisor',
+      affiliation: 'AgapeCode Doula LLC'
     },
     {
       name: 'James Omondi',
@@ -273,14 +273,20 @@ export default function AboutPage() {
                     <h3 className="font-heading text-xl font-bold mb-1">{member.name}</h3>
                     <p className="font-body text-sm text-primary font-semibold mb-3">{member.role}</p>
                     <p className="font-body text-sm text-muted-foreground mb-4">{member.bio}</p>
-                    <div className="flex gap-2">
-                      <Button size="sm" variant="outline" className="h-8 w-8 p-0">
-                        <Linkedin className="h-4 w-4" />
-                      </Button>
-                      <Button size="sm" variant="outline" className="h-8 w-8 p-0">
-                        <Mail className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    {/* LinkedIn icon for Mwangi M. Ndegwa only */}
+                    {member.name === 'Mwangi M. Ndegwa' && (
+                      <div className="flex gap-2">
+                        <a
+                          href="https://ke.linkedin.com/in/mwangimndegwa"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Mwangi M. Ndegwa LinkedIn"
+                          className="inline-flex items-center justify-center h-8 w-8 rounded border border-gray-300 hover:bg-primary/10 transition-colors"
+                        >
+                          <Linkedin className="h-4 w-4 text-[#0077b5]" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -410,14 +416,20 @@ export default function AboutPage() {
             Be part of the movement transforming Africa through education, leadership, and innovation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6 group font-body">
+            <a
+              href="/get-involved"
+              className="text-lg px-8 py-6 group font-body rounded bg-secondary text-primary-foreground hover:bg-secondary/80 transition-colors inline-flex items-center justify-center"
+            >
               Get Involved
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary group font-body">
+            </a>
+            <a
+              href="mailto:info@globaleducatedleaders.org?subject=GEL%20Team%20Inquiry%20from%20About%20Page"
+              className="text-lg px-8 py-6 border border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary group font-body rounded inline-flex items-center justify-center"
+            >
               Contact Us
               <Mail className="ml-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            </Button>
+            </a>
           </div>
         </div>
       </section>

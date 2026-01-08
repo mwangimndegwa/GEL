@@ -543,8 +543,7 @@ export default function HomePage() {
                           {pillar.description}
                         </p>
                         <Button variant="link" className="p-0 h-auto group/btn font-body">
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          {/* Removed Learn More link */}
                         </Button>
                       </CardContent>
                     </Card>
@@ -594,8 +593,7 @@ export default function HomePage() {
                           {pillar.description}
                         </p>
                         <Button variant="link" className="p-0 h-auto group/btn font-body">
-                          Learn More
-                          <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          {/* Removed Learn More link */}
                         </Button>
                       </CardContent>
                     </Card>

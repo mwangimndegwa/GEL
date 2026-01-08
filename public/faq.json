@@ -1,0 +1,78 @@
+[
+  {
+    "q": "what is your mission",
+    "a": "Global Educated Leaders cultivates a global community of leaders who leverage data, technology, and collaborative practice to drive sustainable development, improve food security, and create equitable economic opportunities. We combine training, mentorship, and community-driven projects to deliver measurable social impact."
+  },
+  {
+    "q": "hello",
+    "a": "Hi! How can I assist you today?"
+  },
+  {
+    "q": "how can i get involved",
+    "a": "There are several ways to get involved: apply to our leadership programs, volunteer as a mentor, partner with us on community projects, or contribute financially. Visit the 'Get Involved' page to see active opportunities and current application windows, or contact our programs team for guidance on the best fit for your skills and interests."
+  },
+  {
+    "q": "how can i donate",
+    "a": "Thank you for your interest in supporting our work. You can make a secure donation via the 'Donate' button on our website or by visiting our donations page. Gifts support leadership programs, community projects, and scholarships. If you require an invoice or gift agreement, please contact our team at the email address provided on the site, and we will be happy to assist you."
+  },
+  {
+    "q": "what programs do you run",
+    "a": "Our programs focus on leadership development, data and technology for development, and community-driven initiatives that advance innovation, food security and economic resilience. Program types include cohort-based leadership training, technical workshops, and field partnerships with local organizations. See the 'Our Work' section for program descriptions, eligibility criteria, and impact summaries."
+  },
+  {
+    "q": "who runs the organization / leadership team",
+    "a": "Global Educated Leaders is guided by an experienced leadership team and advisory board with diverse expertise in international development, data science, and community engagement. For biographies, governance information, and contact details, visit the 'About Us' / 'Team' page."
+  },
+  {
+    "q": "do you offer scholarships or funding",
+    "a": "We offer targeted scholarships and financial support for qualifying participants in our leadership and training programs. Eligibility, application instructions, and deadlines are published on the program pages. If you have specific questions about financial aid, please reach out to our admissions team via the contact information on the site."
+  },
+  {
+    "q": "how do you measure impact",
+    "a": "We measure impact through a combination of participant outcomes, community-level indicators, and project-level monitoring. Our evaluation approach includes pre/post assessments, follow-up interviews, and metrics aligned with program goals (e.g., increased food security, improved livelihoods). Summaries of recent impact assessments are available in our impact reports."
+  },
+  {
+    "q": "can organizations partner with you",
+    "a": "Yes — we welcome partnerships with NGOs, academic institutions, funders, and private sector collaborators. Partnerships may include co-designed projects, capacity building, data partnerships, and funding collaborations. Please visit the 'Partnerships' section or contact info@globaleducatedleaders.org to start a conversation."
+  },
+  {
+    "q": "how can the press contact you",
+    "a": "For media inquiries, please contact our team at the email address listed on the 'Contact' page. We can provide press materials, statements, and arrange interviews with program leads or executives. For urgent inquiries, please mark your message as 'Press — urgent'."
+  },
+  {
+    "q": "where are you located / what regions do you work in",
+    "a": "We are an international organization working across multiple regions. Currently our programs and partners span communities in Africa and the US. For details about regional offices, local partners, or country-specific initiatives, see the 'Contact' or 'Our Work' pages where location-specific information is listed."
+  },
+  {
+    "question": "Why focus on both farming and technology? They seem so different.",
+    "answer": "At GEL, we believe the soil and the circuit board are two sides of the same coin: Resilience. Our founder learned in 2023 that passion without data is vulnerable to climate shocks. By bringing tech to the farm, we ensure a rural village can be as data-driven as a global startup. We don't just grow crops; we grow smart systems."
+  },
+  {
+    "question": "What does 'Leadership' actually mean to GEL? Is it just for CEOs?",
+    "answer": "Leadership is the 'Roots of Resilience.' It is the farmer who adapts after a drought, the student sharing digital tools, and the innovator who listens first. We define a leader as anyone committed to ensuring 'no one walks alone.' Whether in a boardroom or a garden, you lead with both soul and data."
+  },
+  {
+    "question": "I’ve experienced a total loss in my project like the 2023 drought. What now?",
+    "answer": "We hear you. Our founder's heartbreak in 2023 became the fertilizer for GEL. In our community, failure is 'strategic reflection.' We invite you to trade your story with ours; sometimes the most powerful leadership is found in the courage to return to the soil after the rain has stopped."
+  },
+  {
+    "question": "How does GEL view financial investment and literacy for leaders?",
+    "answer": "A resilient leader must understand the 'climate' of finance. Whether choosing a stable 12-month 2% CD, a risk-free 2% bond, a 3.5% risky bond for growth, or a $100 value stock with 2-4% dividends, we teach that data-driven financial choices are what protect your mission during economic 'droughts'."
+  },
+  {
+    "question": "Is GEL only for people in Africa?",
+    "answer": "While our heart is in Kenya’s informal settlements, the 'Geneva Spark' taught us that leadership struggles are universal. We are building a global tapestry. Africa is our launchpad, but we welcome any changemaker from ASU to Europe who is committed to bridging the digital and leadership divide."
+  },
+  {
+    "question": "How can a student-led initiative actually change a continent?",
+    "answer": "Great things start as seeds. Our student-led 'ASU Launchpads' empower youth with world-class insights today to prevent the leadership gaps of tomorrow. When students lead, they bring an energy that isn't afraid of innovation, backed by the GEL framework to ensure that energy creates sustainable change."
+  },
+  {
+    "question": "Can I join if I don't have a background in agriculture or tech?",
+    "answer": "Absolutely. The GEL framework is a cohesive mission. If you have a heart for education or a talent for storytelling, you have a place. Every tapestry needs different colored threads to be strong. We help you weave your unique story into our shared mission of resilience."
+  },
+  {
+    "question": "What does 'Success' look like for GEL in 2030?",
+    "answer": "Success is a self-sustaining ecosystem where a child in an informal settlement accesses the same quality of leadership training as a student at ASU. It’s a world where 'data-driven tradition' is the standard and our global network ensures no changemaker ever has to walk alone."
+  }
+]

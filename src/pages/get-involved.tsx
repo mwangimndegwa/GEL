@@ -202,7 +202,7 @@ export default function GetInvolvedPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
                   <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
-                    Partner With GEL
+                    Partner With Us
                   </h2>
                   <p className="font-body text-lg text-foreground mb-8 leading-relaxed">
                     We collaborate with organizations, corporations, and institutions that share our vision of transformed global communities. Together, we can amplify our impact and create sustainable change.
@@ -462,8 +462,7 @@ export default function GetInvolvedPage() {
                     Other ways to give: Corporate matching, planned giving, stock donations, and in-kind contributions.
                   </p>
                   <Button variant="link" className="font-body">
-                    Learn more about giving options
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    {/* Removed Learn more about giving options link */}
                   </Button>
                 </div>
               </div>
