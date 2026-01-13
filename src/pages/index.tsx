@@ -377,36 +377,38 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
         <HeroBackground />
         {/* Centered Content */}
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          {/* Headline - Large, Bold, Serif Font */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
+          <div className="w-full max-w-4xl mx-auto text-center">
+            {/* Headline - Large, Bold, Serif Font */}
             <h1 className="text-white font-serif font-bold text-4xl md:text-6xl lg:text-7xl text-center mb-6">
               Empowering Leaders, Transforming Communities
             </h1>
-          {/* Subheadline - Body Font, Centered, Readable */}
-            <p className="text-white text-lg md:text-xl text-center max-w-3xl mb-12">
+            {/* Subheadline - Body Font, Centered, Readable */}
+            <p className="text-white text-lg md:text-xl text-center max-w-3xl mx-auto mb-12">
               We are cultivating a global community of leaders who leverage data and technology to drive sustainable development, foster social impact, improve food security, and promote equitable economic opportunities.
             </p>
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/our-work"
-              className="w-full sm:w-auto font-semibold transition-opacity hover:opacity-90
-                px-4 py-2 rounded-md text-base
-                md:px-8 md:py-4 md:rounded-lg md:text-lg"
-              style={{ backgroundColor: '#800000', color: '#FFFFFF' }}>
-              Explore Our Work
-            </a>
-            <a
-              href="/get-involved"
-              className="w-full sm:w-auto bg-white font-semibold transition-colors hover:bg-gray-100
-                px-4 py-2 rounded-md text-base
-                md:px-8 md:py-4 md:rounded-lg md:text-lg"
-              style={{ color: '#003366' }}>
-              Get Involved
-            </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/our-work"
+                className="w-full sm:w-auto font-semibold transition-opacity hover:opacity-90
+                  px-4 py-2 rounded-md text-base
+                  md:px-8 md:py-4 md:rounded-lg md:text-lg"
+                style={{ backgroundColor: '#800000', color: '#FFFFFF' }}>
+                Explore Our Work
+              </a>
+              <a
+                href="/get-involved"
+                className="w-full sm:w-auto bg-white font-semibold transition-colors hover:bg-gray-100
+                  px-4 py-2 rounded-md text-base
+                  md:px-8 md:py-4 md:rounded-lg md:text-lg"
+                style={{ color: '#003366' }}>
+                Get Involved
+              </a>
+            </div>
           </div>
         </div>
       </section>
