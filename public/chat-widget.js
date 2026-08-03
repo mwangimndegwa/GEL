@@ -3,6 +3,8 @@
   // ---- config ----
   const CSS_PATH = "/chat-widget.css";
   const FUSE_CDN = "https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js";
+  const CHAT_API_PATH = "/api/chat";
+  const MAX_DISPLAY_CHARS = 1200;
 
   // show sources under messages? (false hides the "Sources:" line)
   const SHOW_SOURCES = false;
@@ -15,12 +17,12 @@
 
   // rotating greetings + WIP notice
   const GREETING_VARIANTS = [
-    "Welcome! Ask me about our programs, donations, partnerships, or volunteering opportunities.",
-    "Hi there! I can help with program details, how to donate, or ways to get involved.",
-    "Hello! Curious about our impact or how to partner with us? Ask me anything.",
-    "Good to see you! I can guide you through our programs, donation options, and volunteering."
+    "Welcome. Ask me about our programs, donations, partnerships, or volunteering opportunities.",
+    "I can help with program details, how to donate, or ways to get involved.",
+    "Curious about our impact or how to partner with us? Ask directly.",
+    "I can guide you through our programs, donation options, and volunteering.",
   ];
-  const WIP_NOTICE = "Note: this assistant is a work in progress & some answers may be partial. For urgent assistance, please contact us directly.";
+  const WIP_NOTICE = "Note: this assistant is designed to be concise and strategic. For urgent assistance, please contact us directly.";
   const GREETING_SHOW_ON_OPEN_ONLY = true;
 
   // fallback FAQ if /faq.json is missing or malformed
@@ -36,6 +38,35 @@
   }
   function buildGreetingMessage() {
     return `${randomGreeting()}\n\n${WIP_NOTICE}`;
+  }
+
+  function trimOutput(text, maxChars = MAX_DISPLAY_CHARS) {
+    if (typeof text !== "string") return "";
+    const normalized = text.trim();
+    if (normalized.length <= maxChars) return normalized;
+    return `${normalized.slice(0, maxChars).trim()}…`;
+  }
+
+  async function callAssistant(message) {
+    const response = await fetch(CHAT_API_PATH, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message,
+      }),
+    });
+
+    const data = await response.json().catch(() => null);
+    if (!response.ok || !data?.reply) {
+      const error = data?.error || `Assistant request failed with status ${response.status}`;
+      throw new Error(error);
+    }
+
+    return {
+      text: trimOutput(data.reply || ""),
+    };
   }
 
   // inject CSS
@@ -381,6 +412,19 @@
     }
 
     // 4) last resort
+    try {
+      const assistant = await callAssistant(q);
+      if (assistant.text) {
+        return {
+          answered: true,
+          message: assistant.text,
+          sources: [{ url: `/api/assistant (maxOutputTokens: ${assistant.meta.maxOutputTokens || ASSISTANT_MAX_OUTPUT_TOKENS})` }],
+        };
+      }
+    } catch (e) {
+      console.warn("assistant fallback error:", e);
+    }
+
     return { answered: false, message: DEFAULT_NOT_FOUND_MESSAGE };
   }
 
@@ -409,19 +453,15 @@
     if (!text) return;
     addMessage(text, "user");
     input.value = "";
-    addMessage("Searching…", "bot");
+    addMessage("Thinking...", "bot");
     try {
-      const resApi = await answerQuery(text);
+      const resApi = await callAssistant(text);
       removeLastBotPlaceholder();
       if (!resApi) {
         addMessage("An unexpected error occurred. Please try again later.", "bot");
         return;
       }
-      if (!resApi.answered) {
-        addMessage(resApi.message || DEFAULT_NOT_FOUND_MESSAGE, "bot");
-        return;
-      }
-      addMessage(resApi.message, "bot", resApi.sources || []);
+      addMessage(resApi.text || DEFAULT_NOT_FOUND_MESSAGE, "bot");
     } catch (err) {
       removeLastBotPlaceholder();
       console.error("send error:", err);

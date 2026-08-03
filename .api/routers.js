@@ -3,15 +3,18 @@
 import * as configure from "@api/configure";
 import * as API_000 from "@api/root/src/server/api/commerce/create-checkout-session/POST.ts";
 import * as API_001 from "@api/root/src/server/api/health/GET.ts";
+import * as API_002 from "@api/root/src/server/api/assistant/POST.ts";
 
 // Public RESTful API Methods and Paths
 // This section describes the available HTTP methods and their corresponding endpoints (paths).
 // POST /api/commerce/create-checkout-session/    src/server/api/commerce/create-checkout-session/POST.ts
 // GET  /api/health/                              src/server/api/health/GET.ts
+// POST /api/assistant/                           src/server/api/assistant/POST.ts
 
 const internal  = [
   API_000.default  && { cb: API_000.default , method: "post" , route: "/commerce/create-checkout-session/" , url: "/api/commerce/create-checkout-session/" , source: "src/server/api/commerce/create-checkout-session/POST.ts" },
-  API_001.default  && { cb: API_001.default , method: "get"  , route: "/health/"                           , url: "/api/health/"                           , source: "src/server/api/health/GET.ts"                            }
+  API_001.default  && { cb: API_001.default , method: "get"  , route: "/health/"                           , url: "/api/health/"                           , source: "src/server/api/health/GET.ts"                            },
+  API_002.default  && { cb: API_002.default , method: "post" , route: "/assistant/"                          , url: "/api/assistant/"                          , source: "src/server/api/assistant/POST.ts"                        }
 ].filter(it => it);
 
 export const routers = internal.map((it) => {
