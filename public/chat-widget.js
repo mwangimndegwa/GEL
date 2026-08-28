@@ -3,33 +3,29 @@
   // ---- config ----
   const CSS_PATH = "/chat-widget.css";
   const FUSE_CDN = "https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js";
-  const CHAT_API_PATH = "/api/chat";
-  const MAX_DISPLAY_CHARS = 1200;
-
   // show sources under messages? (false hides the "Sources:" line)
   const SHOW_SOURCES = false;
-
   // user-facing messages / thresholds
-  const DEFAULT_NOT_FOUND_MESSAGE = "I’m sorry — I couldn’t find an exact answer on the website. I can point you to related pages or you can contact the team via the Contact page for immediate help.";
+  const DEFAULT_NOT_FOUND_MESSAGE = "I’m sorry — I did not find an exact answer on the website. For more information, please contact the team via info@globaleducatedleaders.org.";
   const SITE_CONFIDENCE_THRESHOLD = 0.55; // lower is stricter (Fuse score)
   const FAQ_WORD_OVERLAP_MIN = 0.65;      // require ~65% overlap for faq key match
   const FAQ_FUSE_SCORE_MAX = 0.30;        // faqFuse must be better than this to accept
-
   // rotating greetings + WIP notice
   const GREETING_VARIANTS = [
-    "Welcome. Ask me about our programs, donations, partnerships, or volunteering opportunities.",
-    "I can help with program details, how to donate, or ways to get involved.",
-    "Curious about our impact or how to partner with us? Ask directly.",
-    "I can guide you through our programs, donation options, and volunteering.",
+    "Welcome to Global Educated Leaders! Ask me about our programs, donations, partnerships, or volunteering opportunities.",
+    "Hi there! I can help with our program details, how to donate, or ways to get involved.",
+    "Hello there! Curious about our impact or how to partner with us? Ask me anything.",
+    "Good to see you today! I can guide you through our programs, donation options, and volunteering."
   ];
-  const WIP_NOTICE = "Note: this assistant is designed to be concise and strategic. For urgent assistance, please contact us directly.";
+  const WIP_NOTICE = "Note: this assistant is a work in progress & some answers may be partial. For urgent assistance, please contact us.";
   const GREETING_SHOW_ON_OPEN_ONLY = true;
-
+  // how long to wait for data to load before we tell the user it's still loading
+  const READY_WAIT_MS = 6000;
   // fallback FAQ if /faq.json is missing or malformed
   const DEFAULT_FAQ = [
     { "q": "what is your mission", "a": "Global Educated Leaders cultivates a global community of leaders who leverage data, technology, and collaborative practice to drive sustainable development, improve food security, and foster equitable economic opportunity." },
-    { "q": "how can i donate", "a": "You can make a secure donation via the Donate button on our website. For institutional gifts or receipts, please contact the development team through the Contact page." },
-    { "q": "how can i get involved", "a": "Apply to our leadership programs, volunteer as a mentor, partner on community projects, or contribute financially. Visit the 'Get Involved' page for current opportunities and instructions." }
+    { "q": "how can I donate", "a": "You can make a secure donation via the Donate button on our website. For institutional gifts or receipts, please contact the development team through the Contact page." },
+    { "q": "how can I get involved", "a": "Apply to our leadership programs, volunteer as a mentor, partner on community projects, or contribute financially. Visit the 'Get Involved' page for current opportunities and instructions." }
   ];
 
   // ---- utilities ----
@@ -39,36 +35,6 @@
   function buildGreetingMessage() {
     return `${randomGreeting()}\n\n${WIP_NOTICE}`;
   }
-
-  function trimOutput(text, maxChars = MAX_DISPLAY_CHARS) {
-    if (typeof text !== "string") return "";
-    const normalized = text.trim();
-    if (normalized.length <= maxChars) return normalized;
-    return `${normalized.slice(0, maxChars).trim()}…`;
-  }
-
-  async function callAssistant(message) {
-    const response = await fetch(CHAT_API_PATH, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message,
-      }),
-    });
-
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data?.reply) {
-      const error = data?.error || `Assistant request failed with status ${response.status}`;
-      throw new Error(error);
-    }
-
-    return {
-      text: trimOutput(data.reply || ""),
-    };
-  }
-
   // inject CSS
   try {
     const link = document.createElement("link");
@@ -78,7 +44,6 @@
   } catch (e) {
     console.warn("Could not load chat CSS:", e);
   }
-
   // load Fuse.js
   function loadFuse() {
     return new Promise((resolve, reject) => {
@@ -101,8 +66,7 @@
     <div class="gel-chat-panel" id="gelChatPanel" aria-hidden="true">
       <div class="gel-chat-header">
         <div style="display:flex;align-items:center;gap:12px;">
-          <div class="gel-chat-title">Global Educated Leaders — Assistant</div>
-          <div style="background:#FFD966;color:#42210B;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:600;margin-left:8px;">Beta</div>
+          <div class="gel-chat-title">GELBOT</div>
         </div>
         <button id="gelCloseBtn" aria-label="Close" style="background:transparent;border:none;color:white;font-weight:700;cursor:pointer">✕</button>
       </div>
@@ -126,37 +90,88 @@
   const input = document.getElementById("gelInput");
   const messages = document.getElementById("gelMessages");
 
-  // message helpers
+  // ---- message rendering helpers ----
+
+  // Escape ONLY what's needed for safe HTML text/attribute output.
+  // (Previous version also escaped "/" and "=", which corrupted URLs.)
   function escapeHtml(str) {
     if (typeof str !== "string") return "";
-    return str.replace(/[&<>"'`=\/]/g, s => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;","/":"&#x2F;","`":"&#x60;","=":"&#x3D;" }[s]));
+    return str.replace(/[&<>"']/g, s => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+    }[s]));
+  }
+
+  // Decode any HTML entities that may already be present in scraped content
+  // (e.g. "&amp;" coming from knowledge.json) so we don't double-escape them.
+  function decodeEntities(str) {
+    if (typeof str !== "string" || !str.includes("&")) return str;
+    const ta = document.createElement("textarea");
+    ta.innerHTML = str;
+    return ta.value;
+  }
+
+  // Strip any stray HTML tags that leaked into scraped content
+  // (e.g. leftover <div>, <span>, <p> from the site scraper).
+  function stripTags(str) {
+    if (typeof str !== "string") return str;
+    return str.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  // Turn plain-text bot output into safe, well-formatted HTML:
+  // - decode stray entities, strip stray tags, then escape
+  // - convert blank-line breaks into paragraphs, single breaks into <br>
+  // - auto-link bare URLs
+  function formatMessageHtml(rawText) {
+    const clean = stripTags(decodeEntities(rawText || ""));
+    const paragraphs = clean.split(/\n{2,}/).map(p => p.trim()).filter(Boolean);
+    const urlRe = /(https?:\/\/[^\s<)]+)/g;
+
+    const htmlParas = (paragraphs.length ? paragraphs : [clean]).map(p => {
+      const withBreaks = p.split(/\n/).map(line => escapeHtml(line)).join("<br>");
+      // escapeHtml already ran per line; now linkify (safe, since text was escaped first)
+      const linked = withBreaks.replace(urlRe, url => {
+        const safeUrl = escapeHtml(url);
+        return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeUrl}</a>`;
+      });
+      return `<p>${linked}</p>`;
+    });
+    return htmlParas.join("");
   }
 
   function addMessage(text, who = "bot", sources = []) {
     const d = document.createElement("div");
     d.className = "gel-msg " + (who === "user" ? "user" : "bot");
-    if (/<a\s/i.test(text)) {
-      d.innerHTML = text;
-    } else {
+    // User input is never treated as HTML; bot output goes through the safe formatter.
+    if (who === "user") {
       d.innerText = text;
+    } else {
+      d.innerHTML = formatMessageHtml(text);
     }
     messages.appendChild(d);
-
     if (SHOW_SOURCES && Array.isArray(sources) && sources.length) {
       const sdiv = document.createElement("div");
       sdiv.className = "gel-sources";
       sdiv.innerHTML = "Sources: " + sources.map(s => {
         const url = (typeof s === "string") ? s : (s.url || "");
-        return `<a class='gel-source-link' href='${escapeHtml(url)}' target='_blank' rel='noopener noreferrer'>${escapeHtml(url)}</a>`;
+        const safeUrl = escapeHtml(url);
+        return `<a class='gel-source-link' href='${safeUrl}' target='_blank' rel='noopener noreferrer'>${safeUrl}</a>`;
       }).join(", ");
       messages.appendChild(sdiv);
     }
     messages.scrollTop = messages.scrollHeight;
   }
 
-  function removeLastBotPlaceholder() {
-    const lastBot = Array.from(messages.querySelectorAll(".gel-msg.bot")).filter(el => /searching|thinking|processing|loading/i.test(el.innerText));
-    if (lastBot.length) lastBot[lastBot.length - 1].remove();
+  // Typing indicator (3 animated dots) instead of a plain "Searching…" text line.
+  function addTypingIndicator() {
+    const d = document.createElement("div");
+    d.className = "gel-msg bot gel-typing";
+    d.innerHTML = `<span class="gel-dot"></span><span class="gel-dot"></span><span class="gel-dot"></span>`;
+    messages.appendChild(d);
+    messages.scrollTop = messages.scrollHeight;
+    return d;
+  }
+  function removeTypingIndicator(el) {
+    if (el && el.parentNode) el.parentNode.removeChild(el);
   }
 
   // ---- search state ----
@@ -164,6 +179,7 @@
   let knowledge = [];
   let fuse = null;
   let faqFuse = null;
+  let searchReady = false;
 
   // load faq robustly
   async function loadFaq() {
@@ -208,8 +224,7 @@
   // extract sentences (defensive + fallback)
   function extractBestSentences(chunkText, query, maxSentences = 3) {
     if (!chunkText) return [];
-
-    const raw = chunkText
+    const raw = stripTags(decodeEntities(chunkText))
       .replace(/\r\n/g, '\n')
       .split(/\n+/)
       .map(p => p.trim())
@@ -218,11 +233,9 @@
       .split(/(?<=[.?!])\s+/)
       .map(s => s.trim())
       .filter(Boolean);
-
     const qterms = (query || "").toLowerCase().split(/\W+/).filter(Boolean);
     const seen = new Set();
     const candidates = [];
-
     function isJunk(s) {
       if (!s) return true;
       const sl = s.trim();
@@ -232,7 +245,6 @@
       if (/^\W+$/.test(sl)) return true;
       return false;
     }
-
     function scoreSentence(s) {
       const sLow = s.toLowerCase();
       let sc = 0;
@@ -240,7 +252,6 @@
       sc += Math.min(Math.max(s.length / 140, 0), 2);
       return sc;
     }
-
     for (const s of raw) {
       const normalized = s.replace(/\s+/g, ' ').trim();
       const key = normalized.toLowerCase();
@@ -249,18 +260,16 @@
       if (isJunk(normalized)) continue;
       candidates.push({ s: normalized, sc: scoreSentence(normalized) });
     }
-
     candidates.sort((a, b) => b.sc - a.sc);
     const top = candidates.slice(0, maxSentences).map(x => x.s);
-
     if (!top.length) {
       const paragraphs = chunkText.split(/\n{1,}/).map(p => p.trim()).filter(Boolean);
       for (const p of paragraphs) {
         if (p.length > 80 && !/^global educated leaders$/i.test(p)) {
-          return [p.replace(/\s+/g, ' ').trim().slice(0, 900)];
+          return [stripTags(decodeEntities(p)).slice(0, 900)];
         }
       }
-      const cleaned = chunkText.replace(/\s+/g, ' ').trim().slice(0, 300);
+      const cleaned = stripTags(decodeEntities(chunkText)).slice(0, 300);
       if (cleaned.length) return [cleaned];
       return [];
     }
@@ -276,12 +285,17 @@
     return matches / Math.max(qTerms.length, kTerms.length);
   }
 
-  // initialize search (load data + create Fuse instances)
+  // initialize search (load data + create Fuse instances) — all in parallel now,
+  // so startup takes as long as the SLOWEST request instead of the SUM of all three.
   async function initSearch() {
     try {
-      await loadFuse().catch(() => null);
-      faq = await loadFaq();
-      knowledge = await loadKnowledge();
+      const [, faqData, knowledgeData] = await Promise.all([
+        loadFuse().catch((e) => { console.warn("Fuse.js failed to load:", e); return null; }),
+        loadFaq(),
+        loadKnowledge()
+      ]);
+      faq = faqData;
+      knowledge = knowledgeData;
 
       if (window.Fuse && Array.isArray(knowledge) && knowledge.length) {
         try {
@@ -299,7 +313,6 @@
       } else {
         fuse = null;
       }
-
       if (window.Fuse && Array.isArray(faq) && faq.length) {
         try {
           faqFuse = new window.Fuse(faq, {
@@ -317,14 +330,30 @@
       }
     } catch (err) {
       console.error("initSearch error:", err);
+    } finally {
+      searchReady = true;
     }
+  }
+
+  // Resolves once initSearch has finished, or after READY_WAIT_MS — whichever comes first —
+  // so a message sent immediately on open doesn't silently skip search data.
+  function waitForReady(timeoutMs) {
+    if (searchReady) return Promise.resolve();
+    return new Promise(resolve => {
+      const start = Date.now();
+      const iv = setInterval(() => {
+        if (searchReady || Date.now() - start > timeoutMs) {
+          clearInterval(iv);
+          resolve();
+        }
+      }, 50);
+    });
   }
 
   // main answer logic: site-first, strict faq fallback
   async function answerQuery(qtext) {
     const q = (qtext || "").trim();
     if (!q) return { answered: false, message: "Please enter a question." };
-
     // 1) site-first search
     try {
       if (fuse) {
@@ -341,7 +370,7 @@
             }
             if (!pieces.length && topN.length) {
               for (const d of topN) {
-                const excerpt = (d.content || "").replace(/\s+/g, " ").trim().slice(0, 600);
+                const excerpt = stripTags(decodeEntities(d.content || "")).slice(0, 600);
                 if (excerpt.length > 40) pieces.push(excerpt);
               }
             }
@@ -356,7 +385,6 @@
     } catch (e) {
       console.warn("site search error:", e);
     }
-
     // 2) strict FAQ matching (exact or word-overlap)
     try {
       if (Array.isArray(faq) && faq.length) {
@@ -382,7 +410,6 @@
     } catch (e) {
       console.warn("faq matching error:", e);
     }
-
     // 3) fallback: show helpful site snippets if possible
     try {
       if (fuse) {
@@ -396,7 +423,7 @@
           }
           if (!pieces.length) {
             for (const d of topDocs) {
-              const excerpt = (d.content || "").replace(/\s+/g, " ").trim().slice(0, 600);
+              const excerpt = stripTags(decodeEntities(d.content || "")).slice(0, 600);
               if (excerpt.length > 40) pieces.push(excerpt);
             }
           }
@@ -410,27 +437,12 @@
     } catch (e) {
       // ignore
     }
-
     // 4) last resort
-    try {
-      const assistant = await callAssistant(q);
-      if (assistant.text) {
-        return {
-          answered: true,
-          message: assistant.text,
-          sources: [{ url: `/api/assistant (maxOutputTokens: ${assistant.meta.maxOutputTokens || ASSISTANT_MAX_OUTPUT_TOKENS})` }],
-        };
-      }
-    } catch (e) {
-      console.warn("assistant fallback error:", e);
-    }
-
     return { answered: false, message: DEFAULT_NOT_FOUND_MESSAGE };
   }
 
   // ---- events / send flow ----
   let greeted = false;
-
   launcher.addEventListener("click", () => {
     panel.style.display = "flex";
     panel.setAttribute("aria-hidden", "false");
@@ -441,34 +453,45 @@
       greeted = true;
     }
   });
-
   closeBtn.addEventListener("click", () => {
     panel.style.display = "none";
     panel.setAttribute("aria-hidden", "true");
     launcher.style.display = "flex";
   });
 
+  let sending = false;
   async function send() {
+    if (sending) return; // prevent double-sends from double-click / double-Enter
     const text = input.value.trim();
     if (!text) return;
+    sending = true;
+    sendBtn.disabled = true;
     addMessage(text, "user");
     input.value = "";
-    addMessage("Thinking...", "bot");
+    const typingEl = addTypingIndicator();
     try {
-      const resApi = await callAssistant(text);
-      removeLastBotPlaceholder();
+      // Make sure we've at least tried to load search data before answering.
+      await waitForReady(READY_WAIT_MS);
+      const resApi = await answerQuery(text);
+      removeTypingIndicator(typingEl);
       if (!resApi) {
         addMessage("An unexpected error occurred. Please try again later.", "bot");
         return;
       }
-      addMessage(resApi.text || DEFAULT_NOT_FOUND_MESSAGE, "bot");
+      if (!resApi.answered) {
+        addMessage(resApi.message || DEFAULT_NOT_FOUND_MESSAGE, "bot");
+        return;
+      }
+      addMessage(resApi.message, "bot", resApi.sources || []);
     } catch (err) {
-      removeLastBotPlaceholder();
+      removeTypingIndicator(typingEl);
       console.error("send error:", err);
       addMessage("An error occurred while processing your request. Try again later.", "bot");
+    } finally {
+      sending = false;
+      sendBtn.disabled = false;
     }
   }
-
   sendBtn.addEventListener("click", send);
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -477,13 +500,11 @@
     }
   });
 
-  // initialize
-  (async function () {
-    await initSearch();
-  })();
+  // initialize (kicked off immediately, in parallel, on script load)
+  const readyPromise = initSearch();
 
   // expose minimal debugging info (safe)
   window.__gel_chat_widget = window.__gel_chat_widget || {};
-  window.__gel_chat_widget.getState = () => ({ faqCount: faq.length, docsCount: knowledge.length, fuseAvailable: !!fuse });
-
+  window.__gel_chat_widget.getState = () => ({ faqCount: faq.length, docsCount: knowledge.length, fuseAvailable: !!fuse, ready: searchReady });
+  window.__gel_chat_widget.ready = readyPromise;
 })();

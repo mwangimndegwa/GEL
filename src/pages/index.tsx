@@ -349,11 +349,11 @@ export default function HomePage() {
   const updates = [
   {
     title: 'BELM Program Launch',
-    category: 'Program Application',
-    date: 'JAN 2026',
+    category: 'Program Implementation',
+    date: 'MAY 2026 - MAY 2027',
     icon: Award,
     description:
-      'We successfully launched our flagship leadership mandate, expanding access to curated knowledge resources for 500+ emerging civic leaders.'
+      'We successfully launched our flagship leadership mandate, expanding access to curated knowledge resources for 1,500+ students in 6 schools.'
   },
   {
     title: 'Talented Engagement: Vetted Outreach',
